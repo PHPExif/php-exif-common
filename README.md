@@ -1,4 +1,4 @@
-# [PHPExif Common](http://github.com/PHPExif/php-exif-common) 
+# [PHPExif Common](http://github.com/PHPExif/php-exif-common) [![Build Status](https://travis-ci.org/PHPExif/php-exif-common.svg?branch=develop)](https://travis-ci.org/PHPExif/php-exif-common)
 
 PHPExif Common is a library which contains shared functionality for PHPExif packages.
 
