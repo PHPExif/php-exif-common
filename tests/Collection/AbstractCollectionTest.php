@@ -4,6 +4,7 @@ namespace Tests\PHPExif\Common\Collection;
 
 use Mockery as m;
 use PHPExif\Common\Collection\AbstractCollection;
+use PHPExif\Common\Exception\Collection\ElementAlreadyExistsException;
 
 /**
  * Class: AbstractCollectionTest
@@ -76,6 +77,80 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             count($input),
             $ctr['value']
+        );
+    }
+
+    /**
+     * @covers ::add
+     * @group collection
+     *
+     * @return void
+     */
+    public function testAddThrowsExceptionForExistingKey()
+    {
+        $this->expectException(ElementAlreadyExistsException::class);
+
+        $mock = m::mock(
+            AbstractCollection::class . '[exists]',
+            array()
+        )->shouldDeferMissing();
+        $mock->shouldReceive('exists')
+            ->with('foo')
+            ->andReturn(true);
+
+        $mock->add('foo', 'bar');
+    }
+
+    /**
+     * @covers ::add
+     * @group collection
+     *
+     * @return void
+     */
+    public function testAddReturnsCurrentInstance()
+    {
+        $mock = m::mock(
+            AbstractCollection::class . '[exists]',
+            array()
+        )->shouldDeferMissing();
+        $mock->shouldReceive('exists')
+            ->with('foo')
+            ->andReturn(false);
+
+        $result = $mock->add('foo', 'bar');
+
+        $this->assertSame(
+            $mock,
+            $result
+        );
+    }
+
+    /**
+     * @covers ::add
+     * @group collection
+     *
+     * @return void
+     */
+    public function testAddInsertsInCollection()
+    {
+        $mock = m::mock(
+            AbstractCollection::class . '[exists]',
+            array()
+        )->shouldDeferMissing();
+        $mock->shouldReceive('exists')
+            ->with('foo')
+            ->andReturn(false);
+
+        $this->assertEquals(
+            0,
+            $mock->count()
+        );
+
+        $mock->add('foo', 'bar');
+
+        $this->assertEquals(
+            1,
+            $mock->count()
         );
     }
 }
