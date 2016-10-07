@@ -77,4 +77,12 @@ abstract class AbstractCollection implements Collection
 
         return $this->elements[$key];
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function count()
+    {
+        return count($this->elements);
+    }
 }
