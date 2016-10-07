@@ -75,6 +75,6 @@ abstract class AbstractCollection implements Collection
             throw ElementNotExistsException::withKey($key);
         }
 
-        return $this->element[$key];
+        return $this->elements[$key];
     }
 }
