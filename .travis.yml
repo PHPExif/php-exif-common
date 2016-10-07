@@ -9,14 +9,14 @@ matrix:
 script:
   - mkdir -p build/logs
   - php vendor/bin/phpunit -c phpunit.xml.dist
-  - ./vendor/bin/phpunit --coverage-clover ./var/log/clover.xml
+  - ./vendor/bin/phpunit
   - ./vendor/bin/phpcs --standard=PSR2 ./src/
 
 before_script:
   - composer install --prefer-source
 
 after_success:
-  - travis_retry php vendor/bin/coveralls
+  - travis_retry php vendor/bin/coveralls -v
 
 before_install:
   - composer self-update

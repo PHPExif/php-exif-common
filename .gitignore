@@ -1,4 +1,4 @@
 vendor
 
-var/*
-!var/.gitkeep
+build/*
+!build/.gitkeep
