@@ -45,7 +45,7 @@ abstract class AbstractCollection implements Collection
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function add($key, $value)
     {
@@ -59,7 +59,7 @@ abstract class AbstractCollection implements Collection
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function exists($key)
     {
@@ -67,7 +67,7 @@ abstract class AbstractCollection implements Collection
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function get($key)
     {
