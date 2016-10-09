@@ -5,6 +5,7 @@ namespace Tests\PHPExif\Common\Collection;
 use Mockery as m;
 use PHPExif\Common\Collection\AbstractCollection;
 use PHPExif\Common\Exception\Collection\ElementAlreadyExistsException;
+use PHPExif\Common\Exception\Collection\ElementNotExistsException;
 
 /**
  * Class: AbstractCollectionTest
@@ -151,6 +152,100 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             1,
             $mock->count()
+        );
+    }
+
+    /**
+     * @covers ::exists
+     * @group collection
+     *
+     * @return void
+     */
+    public function testExistsCorrectlyDeterminesExistenceOfKey()
+    {
+        $mock = m::mock(
+            AbstractCollection::class,
+            array()
+        )->shouldDeferMissing();
+
+        $this->assertFalse(
+            $mock->exists('foo')
+        );
+
+        $mock->add('foo', 'bar');
+
+        $this->assertTrue(
+            $mock->exists('foo')
+        );
+    }
+
+    /**
+     * @covers ::count
+     * @group collection
+     *
+     * @return void
+     */
+    public function testCountReturnsCollectionCount()
+    {
+        $mock = m::mock(
+            AbstractCollection::class,
+            array()
+        )->shouldDeferMissing();
+
+        $this->assertEquals(
+            0,
+            $mock->count()
+        );
+
+        $mock->add('foo', 'bar');
+
+        $this->assertEquals(
+            1,
+            $mock->count()
+        );
+    }
+
+    /**
+     * @covers ::get
+     * @group collection
+     *
+     * @return void
+     */
+    public function testGetThrowsExceptionForNotExistingKey()
+    {
+        $this->expectException(ElementNotExistsException::class);
+
+        $mock = m::mock(
+            AbstractCollection::class . '[exists]',
+            array()
+        )->shouldDeferMissing();
+        $mock->shouldReceive('exists')
+            ->with('foo')
+            ->andReturn(false);
+
+        $mock->get('foo');
+    }
+
+    /**
+     * @covers ::get
+     * @group collection
+     *
+     * @return void
+     */
+    public function testGetReturnsCorrectData()
+    {
+        $mock = m::mock(
+            AbstractCollection::class,
+            array()
+        )->shouldDeferMissing();
+
+        $data = new \stdClass;
+        $mock->add('foo', $data);
+        $result = $mock->get('foo');
+
+        $this->assertSame(
+            $data,
+            $result
         );
     }
 }
