@@ -1,4 +1,4 @@
-# [PHPExif Common](http://github.com/PHPExif/php-exif-common) [![Build Status](https://travis-ci.org/PHPExif/php-exif-common.svg?branch=develop)](https://travis-ci.org/PHPExif/php-exif-common) [![Coverage Status](https://coveralls.io/repos/github/PHPExif/php-exif-common/badge.svg?branch=develop)](https://coveralls.io/github/PHPExif/php-exif-common?branch=develop)
+# [PHPExif Common](http://github.com/PHPExif/php-exif-common) [![Build Status](https://travis-ci.org/PHPExif/php-exif-common.svg?branch=develop)](https://travis-ci.org/PHPExif/php-exif-common) [![Coverage Status](https://coveralls.io/repos/github/PHPExif/php-exif-common/badge.svg?branch=develop)](https://coveralls.io/github/PHPExif/php-exif-common?branch=develop) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PHPExif/php-exif-common/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/PHPExif/php-exif-common/?branch=develop)
 
 PHPExif Common is a library which contains shared functionality for PHPExif packages.
 
