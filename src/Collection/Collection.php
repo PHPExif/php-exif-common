@@ -55,4 +55,12 @@ interface Collection
      * @return mixed
      */
     public function get($key);
+
+    /**
+     * Returns the amount of elements in the collection
+     *
+     *
+     * @return int
+     */
+    public function count();
 }

@@ -45,7 +45,7 @@ abstract class AbstractCollection implements Collection
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function add($key, $value)
     {
@@ -59,7 +59,7 @@ abstract class AbstractCollection implements Collection
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function exists($key)
     {
@@ -67,7 +67,7 @@ abstract class AbstractCollection implements Collection
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function get($key)
     {
@@ -75,6 +75,14 @@ abstract class AbstractCollection implements Collection
             throw ElementNotExistsException::withKey($key);
         }
 
-        return $this->element[$key];
+        return $this->elements[$key];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function count()
+    {
+        return count($this->elements);
     }
 }
