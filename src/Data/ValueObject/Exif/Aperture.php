@@ -64,7 +64,7 @@ class Aperture implements JsonSerializable
     /**
      * Getter for fNumber
      *
-     * @return string
+     * @return float|int
      */
     public function getFNumber()
     {
