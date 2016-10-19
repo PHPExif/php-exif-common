@@ -54,7 +54,7 @@ abstract class StringObject implements JsonSerializable
      *
      * @return void
      */
-    private function setStringData($stringData)
+    protected function setStringData($stringData)
     {
         $this->stringData = $stringData;
     }
