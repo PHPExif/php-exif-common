@@ -86,7 +86,7 @@ class Filesize implements JsonSerializable
      */
     public function getMegaBytes()
     {
-        return ($this->getKiloBytes() / 1024 );
+        return ($this->getKiloBytes() / 1024);
     }
 
     /**
@@ -96,7 +96,7 @@ class Filesize implements JsonSerializable
      */
     public function getGigaBytes()
     {
-        return ($this->getMegaBytes() / 1024 );
+        return ($this->getMegaBytes() / 1024);
     }
 
     /**
