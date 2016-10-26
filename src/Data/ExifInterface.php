@@ -65,13 +65,4 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withAperture(Aperture $aperture);
-
-    /**
-     * Array represenation of current instance
-     *
-     * @param boolean $withEmpty
-     *
-     * @return array
-     */
-    public function toArray($withEmpty = true);
 }

@@ -46,20 +46,4 @@ final class Exif implements ExifInterface
 
         return $new;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function toArray($withEmpty = true)
-    {
-        $data = get_class_vars(
-            self::class
-        );
-
-        if (!$withEmpty) {
-            return array_filter($data);
-        }
-
-        return $data;
-    }
 }
