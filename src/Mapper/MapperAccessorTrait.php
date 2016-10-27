@@ -36,7 +36,7 @@ trait MapperAccessorTrait
             return $this->mapper;
         }
 
-        throw new NoAdapterSetException;
+        throw new NoMapperSetException;
     }
 
     /**
