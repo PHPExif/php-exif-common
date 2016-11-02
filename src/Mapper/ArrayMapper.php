@@ -53,6 +53,13 @@ interface ArrayMapper
     public function getFieldMapper($field);
 
     /**
+     * Returns the complete list of registered FieldMappers
+     *
+     * @return array
+     */
+    public function getFieldMappers();
+
+    /**
      * Maps given input on given output
      *
      * @param array $input
