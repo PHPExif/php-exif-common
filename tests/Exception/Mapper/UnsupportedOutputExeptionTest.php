@@ -15,7 +15,7 @@ class UnsupportedOutputExceptionTest extends BaseExceptionTest
      * @group exception
      * @covers ::forOutput
      */
-    public function testForFieldReturnsInstance()
+    public function testForOutputReturnsInstance()
     {
         $this->assertNamedConstructorReturnsInstance(
             UnsupportedOutputException::class,
