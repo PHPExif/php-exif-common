@@ -28,9 +28,10 @@ interface MapperInterface
      * Maps the array of raw source data to the correct
      * value objects
      *
-     * @param array $data
+     * @param array $input
+     * @param MetadataInterface $output
      *
-     * @return MetadataInterface
+     * @return void
      */
-    public function map(array $data);
+    public function map(array $input, MetadataInterface $output);
 }
