@@ -69,6 +69,14 @@ trait FieldMapperTrait
     /**
      * {@inheritDoc}
      */
+    public function getFieldMappers()
+    {
+        return $this->fieldMappers;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function mapperRegisteredForField($field)
     {
         return array_key_exists($field, $this->fieldMappers);

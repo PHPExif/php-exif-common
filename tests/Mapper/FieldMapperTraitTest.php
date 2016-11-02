@@ -141,7 +141,6 @@ class FieldMapperTraitTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMockBuilder(FieldMapperTrait::class)
             ->getMockForTrait();
 
-
         $mapper = $this->getMockBuilder(FieldMapper::class)
             ->setMethods(['getSupportedFields', 'mapField'])
             ->getMock();
@@ -160,5 +159,65 @@ class FieldMapperTraitTest extends \PHPUnit_Framework_TestCase
 			$mapper,
 			$result
 		);
+	}
+
+    /**
+     * @covers ::getFieldMappers
+     * @group mapper
+     *
+     * @return void
+     */
+	public function testGetFieldMappersReturnsArray()
+	{
+        $mock = $this->getMockBuilder(FieldMapperTrait::class)
+            ->getMockForTrait();
+
+		$result = $mock->getFieldMappers();
+
+		$this->assertInternalType(
+			'array',
+			$result
+		);
+	}
+
+    /**
+     * @covers ::getFieldMappers
+     * @group mapper
+     *
+     * @return void
+     */
+	public function testGetFieldMappersReturnsRegisteredFieldMappers()
+	{
+        $mock = $this->getMockBuilder(FieldMapperTrait::class)
+            ->getMockForTrait();
+
+        $mapper = $this->getMockBuilder(FieldMapper::class)
+            ->setMethods(['getSupportedFields', 'mapField'])
+            ->getMock();
+
+        $mapper->expects($this->once())
+            ->method('getSupportedFields')
+            ->will(
+                $this->returnValue(array('foo'))
+            );
+
+		$result = $mock->getFieldMappers();
+		$this->assertCount(
+			0,
+			$result
+		);
+
+        $mock->registerFieldMapper($mapper);
+
+		$result = $mock->getFieldMappers();
+		$this->assertCount(
+			1,
+			$result
+		);
+
+        $this->assertSame(
+            $result['foo'],
+            $mapper
+        );
 	}
 }
