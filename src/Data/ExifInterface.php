@@ -65,4 +65,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withAperture(Aperture $aperture);
+
+    /**
+     * Accessor for the mimeType
+     *
+     * @return MimeType
+     */
+    public function getMimeType();
+
+    /**
+     * Returns new instance with updated mimeType
+     *
+     * @param MimeType $mimeType
+     *
+     * @return ExifInterface
+     */
+    public function withMimeType(MimeType $mimeType);
 }

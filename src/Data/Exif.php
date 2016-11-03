@@ -29,6 +29,11 @@ final class Exif implements ExifInterface
     private $aperture;
 
     /**
+     * @var MimeType
+     */
+    private $mimeType;
+
+    /**
      * {@inheritDoc}
      */
     public function getAperture()
@@ -43,6 +48,25 @@ final class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->aperture = $aperture;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withMimeType(MimeType $mimeType)
+    {
+        $new = clone $this;
+        $new->mimeType = $mimeType;
 
         return $new;
     }
