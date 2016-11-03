@@ -12,6 +12,7 @@
 namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 
 /**
  * ExifInterface
