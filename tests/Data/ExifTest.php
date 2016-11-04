@@ -5,6 +5,7 @@ namespace Tests\PHPExif\Common\Data;
 use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 
 /**
  * Class: ExifTest
@@ -52,6 +53,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $aperture,
             $new->getAperture()
+        );
+    }
+
+    /**
+     * @covers ::withMimeType
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithMimeTypeReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withMimeType(new MimeType('image/jpeg'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getMimeType
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetMimeTypeReturnsCorrectData()
+    {
+        $mimeType = new MimeType('image/jpeg');
+        $old = new Exif();
+        $new = $old->withMimeType($mimeType);
+
+        $this->assertSame(
+            $mimeType,
+            $new->getMimeType()
         );
     }
 }
