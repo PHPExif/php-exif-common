@@ -13,6 +13,7 @@ namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
+use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 
 /**
@@ -99,4 +100,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withFilename(Filename $filename);
+
+    /**
+     * Accessor for the filesize
+     *
+     * @return Filesize
+     */
+    public function getFilesize();
+
+    /**
+     * Returns new instance with updated filesize
+     *
+     * @param Filesize $filesize
+     *
+     * @return ExifInterface
+     */
+    public function withFilesize(Filesize $filesize);
 }
