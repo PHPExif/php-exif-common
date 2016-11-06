@@ -5,6 +5,7 @@ namespace Tests\PHPExif\Common\Data;
 use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 
 /**
@@ -92,6 +93,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $mimeType,
             $new->getMimeType()
+        );
+    }
+
+    /**
+     * @covers ::withFilename
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithFilenameReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withFilename(new Filename('IMG_01234.JPG'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getFilename
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetFilenameReturnsCorrectData()
+    {
+        $filename = new Filename('IMG_01234.JPG');
+        $old = new Exif();
+        $new = $old->withFilename($filename);
+
+        $this->assertSame(
+            $filename,
+            $new->getFilename()
         );
     }
 }

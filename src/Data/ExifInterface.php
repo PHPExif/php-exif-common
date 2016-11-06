@@ -12,6 +12,7 @@
 namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 
 /**
@@ -82,4 +83,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withMimeType(MimeType $mimeType);
+
+    /**
+     * Accessor for the filename
+     *
+     * @return Filename
+     */
+    public function getFilename();
+
+    /**
+     * Returns new instance with updated filename
+     *
+     * @param Filename $filename
+     *
+     * @return ExifInterface
+     */
+    public function withFilename(Filename $filename);
 }
