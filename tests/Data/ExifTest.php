@@ -6,6 +6,7 @@ use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
+use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 
 /**
@@ -132,6 +133,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $filename,
             $new->getFilename()
+        );
+    }
+
+    /**
+     * @covers ::withFilesize
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithFilesizeReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withFilesize(new Filesize(123456));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getFilesize
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetFilesizeReturnsCorrectData()
+    {
+        $filesize = new Filesize(123456);
+        $old = new Exif();
+        $new = $old->withFilesize($filesize);
+
+        $this->assertSame(
+            $filesize,
+            $new->getFilesize()
         );
     }
 }
