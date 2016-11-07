@@ -7,6 +7,7 @@ use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
+use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 
 /**
@@ -172,6 +173,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $filesize,
             $new->getFilesize()
+        );
+    }
+
+    /**
+     * @covers ::withMake
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithMakeReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withMake(new Make('Nikon'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getMake
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetMakeReturnsCorrectData()
+    {
+        $make = new Make('Nikon');
+        $old = new Exif();
+        $new = $old->withMake($make);
+
+        $this->assertSame(
+            $make,
+            $new->getMake()
         );
     }
 }
