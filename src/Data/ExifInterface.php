@@ -16,6 +16,7 @@ use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
+use PHPExif\Common\Data\ValueObject\Exif\Model;
 
 /**
  * ExifInterface
@@ -27,7 +28,6 @@ use PHPExif\Common\Data\ValueObject\Exif\MimeType;
  */
 interface ExifInterface
 {
-    const APERTURE              = 'aperture';
     const AUTHOR                = 'author';
     const CAMERA                = 'camera';
     const CAPTION               = 'caption';
@@ -36,7 +36,6 @@ interface ExifInterface
     const CREATION_DATE         = 'creationdate';
     const CREDIT                = 'credit';
     const EXPOSURE              = 'exposure';
-    const FILESIZE              = 'FileSize';
     const FOCAL_LENGTH          = 'focalLength';
     const FOCAL_DISTANCE        = 'focalDistance';
     const HEADLINE              = 'headline';
@@ -45,7 +44,6 @@ interface ExifInterface
     const ISO                   = 'iso';
     const JOB_TITLE             = 'jobTitle';
     const KEYWORDS              = 'keywords';
-    const MIMETYPE              = 'MimeType';
     const ORIENTATION           = 'Orientation';
     const SOFTWARE              = 'software';
     const SOURCE                = 'source';
@@ -133,4 +131,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withMake(Make $make);
+
+    /**
+     * Accessor for the model
+     *
+     * @return Model
+     */
+    public function getModel();
+
+    /**
+     * Returns new instance with updated model
+     *
+     * @param Model $model
+     *
+     * @return ExifInterface
+     */
+    public function withModel(Model $model);
 }
