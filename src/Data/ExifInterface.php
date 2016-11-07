@@ -14,6 +14,7 @@ namespace PHPExif\Common\Data;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
+use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 
 /**
@@ -116,4 +117,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withFilesize(Filesize $filesize);
+
+    /**
+     * Accessor for the make
+     *
+     * @return Make
+     */
+    public function getMake();
+
+    /**
+     * Returns new instance with updated make
+     *
+     * @param Make $make
+     *
+     * @return ExifInterface
+     */
+    public function withMake(Make $make);
 }

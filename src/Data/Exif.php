@@ -14,6 +14,7 @@ namespace PHPExif\Common\Data;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
+use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 
 /**
@@ -40,6 +41,11 @@ final class Exif implements ExifInterface
      * @var Filesize
      */
     private $filesize;
+
+    /**
+     * @var Make
+     */
+    private $make;
 
     /**
      * @var MimeType
@@ -118,6 +124,25 @@ final class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->filesize = $filesize;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMake()
+    {
+        return $this->make;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withMake(Make $make)
+    {
+        $new = clone $this;
+        $new->make = $make;
 
         return $new;
     }
