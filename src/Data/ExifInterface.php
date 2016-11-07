@@ -17,6 +17,7 @@ use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
+use PHPExif\Common\Data\ValueObject\Exif\Software;
 
 /**
  * ExifInterface
@@ -45,7 +46,6 @@ interface ExifInterface
     const JOB_TITLE             = 'jobTitle';
     const KEYWORDS              = 'keywords';
     const ORIENTATION           = 'Orientation';
-    const SOFTWARE              = 'software';
     const SOURCE                = 'source';
     const TITLE                 = 'title';
     const VERTICAL_RESOLUTION   = 'verticalResolution';
@@ -147,4 +147,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withModel(Model $model);
+
+    /**
+     * Accessor for the software
+     *
+     * @return Software
+     */
+    public function getSoftware();
+
+    /**
+     * Returns new instance with updated software
+     *
+     * @param Software $software
+     *
+     * @return ExifInterface
+     */
+    public function withSoftware(Software $software);
 }

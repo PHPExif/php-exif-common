@@ -10,6 +10,7 @@ use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
+use PHPExif\Common\Data\ValueObject\Exif\Software;
 
 /**
  * Class: ExifTest
@@ -252,6 +253,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $model,
             $new->getModel()
+        );
+    }
+
+    /**
+     * @covers ::withSoftware
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithSoftwareReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withSoftware(new Software('Adobe Photoshop Lightroom'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getSoftware
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetSoftwareReturnsCorrectData()
+    {
+        $software = new Software('Adobe Photoshop Lightroom');
+        $old = new Exif();
+        $new = $old->withSoftware($software);
+
+        $this->assertSame(
+            $software,
+            $new->getSoftware()
         );
     }
 }

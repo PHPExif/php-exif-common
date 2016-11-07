@@ -17,6 +17,7 @@ use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
+use PHPExif\Common\Data\ValueObject\Exif\Software;
 
 /**
  * Exif class
@@ -57,6 +58,11 @@ final class Exif implements ExifInterface
      * @var MimeType
      */
     private $mimeType;
+
+    /**
+     * @var Software
+     */
+    private $software;
 
     /**
      * {@inheritDoc}
@@ -168,6 +174,25 @@ final class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->model = $model;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSoftware()
+    {
+        return $this->software;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withSoftware(Software $software)
+    {
+        $new = clone $this;
+        $new->software = $software;
 
         return $new;
     }
