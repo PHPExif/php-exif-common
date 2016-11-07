@@ -14,6 +14,7 @@ namespace PHPExif\Common\Data;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
+use PHPExif\Common\Data\ValueObject\Exif\Headline;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
@@ -149,18 +150,18 @@ interface ExifInterface
     public function withModel(Model $model);
 
     /**
-     * Accessor for the software
+     * Accessor for the headline
      *
-     * @return Software
+     * @return Headline
      */
-    public function getSoftware();
+    public function getHeadline();
 
     /**
-     * Returns new instance with updated software
+     * Returns new instance with updated headline
      *
-     * @param Software $software
+     * @param Headline $headline
      *
      * @return ExifInterface
      */
-    public function withSoftware(Software $software);
+    public function withHeadline(Headline $headline);
 }

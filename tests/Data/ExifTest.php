@@ -7,6 +7,7 @@ use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
+use PHPExif\Common\Data\ValueObject\Exif\Headline;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
@@ -292,6 +293,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $software,
             $new->getSoftware()
+        );
+    }
+
+    /**
+     * @covers ::withHeadline
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithHeadlineReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withHeadline(new Headline('School \'s out for summer!'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getHeadline
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetHeadlineReturnsCorrectData()
+    {
+        $headline = new Headline('Smoking in the boys room');
+        $old = new Exif();
+        $new = $old->withHeadline($headline);
+
+        $this->assertSame(
+            $headline,
+            $new->getHeadline()
         );
     }
 }
