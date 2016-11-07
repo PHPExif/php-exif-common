@@ -17,9 +17,9 @@ use \JsonSerializable;
 use \RuntimeException;
 
 /**
- * Author class
+ * String Object
  *
- * A value object to describe the Author data
+ * Abstract class for objects with only String data
  *
  * @category    PHPExif
  * @package     Common
@@ -36,7 +36,7 @@ abstract class StringObject implements JsonSerializable
     /**
      * @param string $stringData
      *
-     * @throws InvalidArgumentException If given f-number is not a string
+     * @throws InvalidArgumentException If given argument is not a string
      */
     public function __construct($stringData)
     {
