@@ -5,6 +5,7 @@ namespace Tests\PHPExif\Common\Data;
 use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Author;
 use PHPExif\Common\Data\ValueObject\Exif\Caption;
 use PHPExif\Common\Data\ValueObject\Exif\Copyright;
 use PHPExif\Common\Data\ValueObject\Exif\Credit;
@@ -452,6 +453,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $caption,
             $new->getCaption()
+        );
+    }
+
+    /**
+     * @covers ::withAuthor
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithAuthorReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withAuthor(new Author('Jack PhotoG'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getAuthor
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetAuthorReturnsCorrectData()
+    {
+        $author = new Author('Jack PhotoG');
+        $old = new Exif();
+        $new = $old->withAuthor($author);
+
+        $this->assertSame(
+            $author,
+            $new->getAuthor()
         );
     }
 }
