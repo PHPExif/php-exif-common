@@ -5,6 +5,7 @@ namespace Tests\PHPExif\Common\Data;
 use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Caption;
 use PHPExif\Common\Data\ValueObject\Exif\Copyright;
 use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
@@ -412,6 +413,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $copyright,
             $new->getCopyright()
+        );
+    }
+
+    /**
+     * @covers ::withCaption
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithCaptionReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withCaption(new Caption('Lorum Ipsum'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getCaption
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetCaptionReturnsCorrectData()
+    {
+        $caption = new Caption('Lorum Ipsum');
+        $old = new Exif();
+        $new = $old->withCaption($caption);
+
+        $this->assertSame(
+            $caption,
+            $new->getCaption()
         );
     }
 }
