@@ -12,6 +12,7 @@
 namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
@@ -36,11 +37,9 @@ interface ExifInterface
     const COLORSPACE            = 'ColorSpace';
     const COPYRIGHT             = 'copyright';
     const CREATION_DATE         = 'creationdate';
-    const CREDIT                = 'credit';
     const EXPOSURE              = 'exposure';
     const FOCAL_LENGTH          = 'focalLength';
     const FOCAL_DISTANCE        = 'focalDistance';
-    const HEADLINE              = 'headline';
     const HEIGHT                = 'height';
     const HORIZONTAL_RESOLUTION = 'horizontalResolution';
     const ISO                   = 'iso';
@@ -164,4 +163,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withHeadline(Headline $headline);
+
+    /**
+     * Accessor for the credit
+     *
+     * @return Credit
+     */
+    public function getCredit();
+
+    /**
+     * Returns new instance with updated credit
+     *
+     * @param Credit $credit
+     *
+     * @return ExifInterface
+     */
+    public function withCredit(Credit $credit);
 }

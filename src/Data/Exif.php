@@ -12,6 +12,7 @@
 namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
@@ -34,6 +35,11 @@ final class Exif implements ExifInterface
      * @var Aperture
      */
     private $aperture;
+
+    /**
+     * @var Credit
+     */
+    private $credit;
 
     /**
      * @var Filename
@@ -218,6 +224,25 @@ final class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->headline = $headline;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCredit()
+    {
+        return $this->credit;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withCredit(Credit $credit)
+    {
+        $new = clone $this;
+        $new->credit = $credit;
 
         return $new;
     }
