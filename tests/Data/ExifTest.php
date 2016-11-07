@@ -5,6 +5,7 @@ namespace Tests\PHPExif\Common\Data;
 use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Copyright;
 use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
@@ -372,6 +373,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $credit,
             $new->getCredit()
+        );
+    }
+
+    /**
+     * @covers ::withCopyright
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithCopyrightReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withCopyright(new Copyright('Tom Van Herreweghe'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getCopyright
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetCopyrightReturnsCorrectData()
+    {
+        $copyright = new Copyright('Tom Van Herreweghe');
+        $old = new Exif();
+        $new = $old->withCopyright($copyright);
+
+        $this->assertSame(
+            $copyright,
+            $new->getCopyright()
         );
     }
 }

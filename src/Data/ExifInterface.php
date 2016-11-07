@@ -12,6 +12,7 @@
 namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Copyright;
 use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
@@ -35,7 +36,6 @@ interface ExifInterface
     const CAMERA                = 'camera';
     const CAPTION               = 'caption';
     const COLORSPACE            = 'ColorSpace';
-    const COPYRIGHT             = 'copyright';
     const CREATION_DATE         = 'creationdate';
     const EXPOSURE              = 'exposure';
     const FOCAL_LENGTH          = 'focalLength';
@@ -179,4 +179,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withCredit(Credit $credit);
+
+    /**
+     * Accessor for the copyright
+     *
+     * @return Copyright
+     */
+    public function getCopyright();
+
+    /**
+     * Returns new instance with updated copyright
+     *
+     * @param Copyright $copyright
+     *
+     * @return ExifInterface
+     */
+    public function withCopyright(Copyright $copyright);
 }
