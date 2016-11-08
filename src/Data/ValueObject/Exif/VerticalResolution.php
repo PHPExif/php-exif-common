@@ -28,7 +28,7 @@ class VerticalResolution extends Resolution
     /**
      * Creates a new instance from given Resolution object
      *
-     * @param VerticalResolution $Resolution
+     * @param VerticalResolution $resolution
      *
      * @return VerticalResolution
      */

@@ -28,7 +28,7 @@ class HorizontalResolution extends Resolution
     /**
      * Creates a new instance from given Resolution object
      *
-     * @param HorizontalResolution $Resolution
+     * @param HorizontalResolution $resolution
      *
      * @return HorizontalResolution
      */
