@@ -22,10 +22,12 @@ use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
 use PHPExif\Common\Data\ValueObject\Exif\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
 use PHPExif\Common\Data\ValueObject\Exif\Height;
+use PHPExif\Common\Data\ValueObject\Exif\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
 use PHPExif\Common\Data\ValueObject\Exif\Software;
+use PHPExif\Common\Data\ValueObject\Exif\VerticalResolution;
 use PHPExif\Common\Data\ValueObject\Exif\Width;
 
 /**
@@ -40,10 +42,8 @@ interface ExifInterface
 {
     const COLORSPACE            = 'ColorSpace';
     const CREATION_DATE         = 'creationdate';
-    const HORIZONTAL_RESOLUTION = 'horizontalResolution';
     const KEYWORDS              = 'keywords';
     const ORIENTATION           = 'Orientation';
-    const VERTICAL_RESOLUTION   = 'verticalResolution';
     const GPS                   = 'gps';
 
     /**
@@ -285,4 +285,36 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withFocusDistance(FocusDistance $focusDistance);
+
+    /**
+     * Accessor for the horizontalResolution
+     *
+     * @return HorizontalResolution
+     */
+    public function getHorizontalResolution();
+
+    /**
+     * Returns new instance with updated horizontalResolution
+     *
+     * @param HorizontalResolution $horizontalResolution
+     *
+     * @return ExifInterface
+     */
+    public function withHorizontalResolution(HorizontalResolution $horizontalResolution);
+
+    /**
+     * Accessor for the verticalResolution
+     *
+     * @return VerticalResolution
+     */
+    public function getVerticalResolution();
+
+    /**
+     * Returns new instance with updated verticalResolution
+     *
+     * @param VerticalResolution $verticalResolution
+     *
+     * @return ExifInterface
+     */
+    public function withVerticalResolution(VerticalResolution $verticalResolution);
 }

@@ -15,10 +15,12 @@ use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
 use PHPExif\Common\Data\ValueObject\Exif\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
 use PHPExif\Common\Data\ValueObject\Exif\Height;
+use PHPExif\Common\Data\ValueObject\Exif\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
 use PHPExif\Common\Data\ValueObject\Exif\Software;
+use PHPExif\Common\Data\ValueObject\Exif\VerticalResolution;
 use PHPExif\Common\Data\ValueObject\Exif\Width;
 
 /**
@@ -652,6 +654,84 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $focusDistance,
             $new->getFocusDistance()
+        );
+    }
+
+    /**
+     * @covers ::withHorizontalResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithHorizontalResolutionReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withHorizontalResolution(new HorizontalResolution('300/1'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getHorizontalResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetHorizontalResolutionReturnsCorrectData()
+    {
+        $horizontalResolution = new HorizontalResolution('300/1');
+        $old = new Exif();
+        $new = $old->withHorizontalResolution($horizontalResolution);
+
+        $this->assertSame(
+            $horizontalResolution,
+            $new->getHorizontalResolution()
+        );
+    }
+
+    /**
+     * @covers ::withVerticalResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithVerticalResolutionReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withVerticalResolution(new VerticalResolution('300/1'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getVerticalResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetVerticalResolutionReturnsCorrectData()
+    {
+        $verticalResolution = new VerticalResolution('300/1');
+        $old = new Exif();
+        $new = $old->withVerticalResolution($verticalResolution);
+
+        $this->assertSame(
+            $verticalResolution,
+            $new->getVerticalResolution()
         );
     }
 }

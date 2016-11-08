@@ -22,10 +22,12 @@ use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
 use PHPExif\Common\Data\ValueObject\Exif\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
 use PHPExif\Common\Data\ValueObject\Exif\Height;
+use PHPExif\Common\Data\ValueObject\Exif\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
 use PHPExif\Common\Data\ValueObject\Exif\Software;
+use PHPExif\Common\Data\ValueObject\Exif\VerticalResolution;
 use PHPExif\Common\Data\ValueObject\Exif\Width;
 
 /**
@@ -94,6 +96,11 @@ final class Exif implements ExifInterface
     private $height;
 
     /**
+     * @var HorizontalResolution
+     */
+    private $horizontalResolution;
+
+    /**
      * @var Make
      */
     private $make;
@@ -112,6 +119,11 @@ final class Exif implements ExifInterface
      * @var Software
      */
     private $software;
+
+    /**
+     * @var VerticalResolution
+     */
+    private $verticalResolution;
 
     /**
      * @var Width
@@ -418,6 +430,44 @@ final class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->focusDistance = $focusDistance;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getHorizontalResolution()
+    {
+        return $this->horizontalResolution;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withHorizontalResolution(HorizontalResolution $horizontalResolution)
+    {
+        $new = clone $this;
+        $new->horizontalResolution = $horizontalResolution;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getVerticalResolution()
+    {
+        return $this->verticalResolution;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withVerticalResolution(VerticalResolution $verticalResolution)
+    {
+        $new = clone $this;
+        $new->verticalResolution = $verticalResolution;
 
         return $new;
     }
