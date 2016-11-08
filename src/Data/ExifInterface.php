@@ -37,12 +37,10 @@ interface ExifInterface
     const CAMERA                = 'camera';
     const COLORSPACE            = 'ColorSpace';
     const CREATION_DATE         = 'creationdate';
-    const EXPOSURE              = 'exposure';
     const FOCAL_LENGTH          = 'focalLength';
     const FOCAL_DISTANCE        = 'focalDistance';
     const HEIGHT                = 'height';
     const HORIZONTAL_RESOLUTION = 'horizontalResolution';
-    const ISO                   = 'iso';
     const JOB_TITLE             = 'jobTitle';
     const KEYWORDS              = 'keywords';
     const ORIENTATION           = 'Orientation';

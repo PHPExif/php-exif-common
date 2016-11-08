@@ -37,11 +37,17 @@ class ExposureTime extends StringObject
             throw new InvalidArgumentException('Given data is not a string');
         }
 
-        if (!preg_match('#^(1/[0-9]*)s?$#', $stringData, $matches)) {
+        if (!preg_match('#^([0-9]+)/([0-9]+)s?$#', $stringData, $matches)) {
             throw new RuntimeException('Given exposure time is not in a valid format. Need: "1/<number>" or "1/<number>s"');
         }
 
-        $this->setStringData($matches[1]);
+        $numerator = (int) $matches[1];
+        $denominator = (int) $matches[2];
+
+        // normalize:
+        $denominator /= $numerator;
+
+        $this->setStringData("1/{$denominator}");
     }
 
     /**

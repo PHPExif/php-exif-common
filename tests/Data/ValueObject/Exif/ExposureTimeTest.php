@@ -61,6 +61,8 @@ class ExposureTimeTest extends \PHPUnit_Framework_TestCase
         return [
             ['1/320'],
             ['1/320s'],
+            ['10/300s'],
+            ['10/300s'],
         ];
     }
 
@@ -127,6 +129,24 @@ class ExposureTimeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             '1/320',
+            $exposureTime->getStringData()
+        );
+    }
+
+    /**
+     * @covers ::__construct
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testExposureTimeConstructionNormalizesArgument2()
+    {
+        $exposureTime = new ExposureTime('10/300s');
+
+        $this->assertEquals(
+            '1/30',
             $exposureTime->getStringData()
         );
     }
