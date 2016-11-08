@@ -19,6 +19,7 @@ use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
+use PHPExif\Common\Data\ValueObject\Exif\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
 use PHPExif\Common\Data\ValueObject\Exif\Height;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
@@ -76,6 +77,11 @@ final class Exif implements ExifInterface
      * @var FocalLength
      */
     private $focalLength;
+
+    /**
+     * @var FocusDistance
+     */
+    private $focusDistance;
 
     /**
      * @var Headline
@@ -393,6 +399,25 @@ final class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->focalLength = $focalLength;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFocusDistance()
+    {
+        return $this->focusDistance;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withFocusDistance(FocusDistance $focusDistance)
+    {
+        $new = clone $this;
+        $new->focusDistance = $focusDistance;
 
         return $new;
     }

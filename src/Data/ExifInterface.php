@@ -19,6 +19,7 @@ use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
+use PHPExif\Common\Data\ValueObject\Exif\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
 use PHPExif\Common\Data\ValueObject\Exif\Height;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
@@ -37,16 +38,11 @@ use PHPExif\Common\Data\ValueObject\Exif\Width;
  */
 interface ExifInterface
 {
-    const CAMERA                = 'camera';
     const COLORSPACE            = 'ColorSpace';
     const CREATION_DATE         = 'creationdate';
-    const FOCAL_DISTANCE        = 'focalDistance';
     const HORIZONTAL_RESOLUTION = 'horizontalResolution';
-    const JOB_TITLE             = 'jobTitle';
     const KEYWORDS              = 'keywords';
     const ORIENTATION           = 'Orientation';
-    const SOURCE                = 'source';
-    const TITLE                 = 'title';
     const VERTICAL_RESOLUTION   = 'verticalResolution';
     const GPS                   = 'gps';
 
@@ -273,4 +269,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withFocalLength(FocalLength $focalLength);
+
+    /**
+     * Accessor for the focusDistance
+     *
+     * @return FocusDistance
+     */
+    public function getFocusDistance();
+
+    /**
+     * Returns new instance with updated focusDistance
+     *
+     * @param FocusDistance $focusDistance
+     *
+     * @return ExifInterface
+     */
+    public function withFocusDistance(FocusDistance $focusDistance);
 }
