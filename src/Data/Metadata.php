@@ -19,17 +19,17 @@ namespace PHPExif\Common\Data;
  * @category    PHPExif
  * @package     Common
  */
-final class Metadata implements MetadataInterface
+class Metadata implements MetadataInterface
 {
     /**
      * @var ExifInterface
      */
-    private $exif;
+    protected $exif;
 
     /**
      * @var IptcInterface
      */
-    private $iptc;
+    protected $iptc;
 
     /**
      * Constructor

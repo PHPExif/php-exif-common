@@ -38,97 +38,97 @@ use PHPExif\Common\Data\ValueObject\Exif\Width;
  * @category    PHPExif
  * @package     Common
  */
-final class Exif implements ExifInterface
+class Exif implements ExifInterface
 {
     /**
      * @var Aperture
      */
-    private $aperture;
+    protected $aperture;
 
     /**
      * @var Author
      */
-    private $author;
+    protected $author;
 
     /**
      * @var Caption
      */
-    private $caption;
+    protected $caption;
 
     /**
      * @var Copyright
      */
-    private $copyright;
+    protected $copyright;
 
     /**
      * @var Credit
      */
-    private $credit;
+    protected $credit;
 
     /**
      * @var Filename
      */
-    private $filename;
+    protected $filename;
 
     /**
      * @var Filesize
      */
-    private $filesize;
+    protected $filesize;
 
     /**
      * @var FocalLength
      */
-    private $focalLength;
+    protected $focalLength;
 
     /**
      * @var FocusDistance
      */
-    private $focusDistance;
+    protected $focusDistance;
 
     /**
      * @var Headline
      */
-    private $headline;
+    protected $headline;
 
     /**
      * @var Height
      */
-    private $height;
+    protected $height;
 
     /**
      * @var HorizontalResolution
      */
-    private $horizontalResolution;
+    protected $horizontalResolution;
 
     /**
      * @var Make
      */
-    private $make;
+    protected $make;
 
     /**
      * @var Model
      */
-    private $model;
+    protected $model;
 
     /**
      * @var MimeType
      */
-    private $mimeType;
+    protected $mimeType;
 
     /**
      * @var Software
      */
-    private $software;
+    protected $software;
 
     /**
      * @var VerticalResolution
      */
-    private $verticalResolution;
+    protected $verticalResolution;
 
     /**
      * @var Width
      */
-    private $width;
+    protected $width;
 
     /**
      * {@inheritDoc}
