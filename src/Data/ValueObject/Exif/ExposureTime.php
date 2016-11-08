@@ -38,7 +38,8 @@ class ExposureTime extends StringObject
         }
 
         if (!preg_match('#^([0-9]+)/([0-9]+)s?$#', $stringData, $matches)) {
-            throw new RuntimeException('Given exposure time is not in a valid format. Need: "1/<number>" or "1/<number>s"');
+            throw new RuntimeException('Given exposure time is not in a valid format. 
+                Need: "1/<number>" or "1/<number>s"');
         }
 
         $numerator = (int) $matches[1];
