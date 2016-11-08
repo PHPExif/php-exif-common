@@ -19,10 +19,12 @@ use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
+use PHPExif\Common\Data\ValueObject\Exif\Height;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
 use PHPExif\Common\Data\ValueObject\Exif\Software;
+use PHPExif\Common\Data\ValueObject\Exif\Width;
 
 /**
  * Exif class
@@ -75,6 +77,11 @@ final class Exif implements ExifInterface
     private $headline;
 
     /**
+     * @var Height
+     */
+    private $height;
+
+    /**
      * @var Make
      */
     private $make;
@@ -93,6 +100,11 @@ final class Exif implements ExifInterface
      * @var Software
      */
     private $software;
+
+    /**
+     * @var Width
+     */
+    private $width;
 
     /**
      * {@inheritDoc}
@@ -318,6 +330,44 @@ final class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->author = $author;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withWidth(Width $width)
+    {
+        $new = clone $this;
+        $new->width = $width;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withHeight(Height $height)
+    {
+        $new = clone $this;
+        $new->height = $height;
 
         return $new;
     }

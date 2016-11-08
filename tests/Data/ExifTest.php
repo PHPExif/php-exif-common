@@ -12,10 +12,12 @@ use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
+use PHPExif\Common\Data\ValueObject\Exif\Height;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
 use PHPExif\Common\Data\ValueObject\Exif\Model;
 use PHPExif\Common\Data\ValueObject\Exif\Software;
+use PHPExif\Common\Data\ValueObject\Exif\Width;
 
 /**
  * Class: ExifTest
@@ -492,6 +494,84 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $author,
             $new->getAuthor()
+        );
+    }
+
+    /**
+     * @covers ::withWidth
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithWidthReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withWidth(new Width(1024));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getWidth
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetWidthReturnsCorrectData()
+    {
+        $width = new Width(2048);
+        $old = new Exif();
+        $new = $old->withWidth($width);
+
+        $this->assertSame(
+            $width,
+            $new->getWidth()
+        );
+    }
+
+    /**
+     * @covers ::withHeight
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithHeightReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withHeight(new Height(1024));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getHeight
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetHeightReturnsCorrectData()
+    {
+        $height = new Height(2048);
+        $old = new Exif();
+        $new = $old->withHeight($height);
+
+        $this->assertSame(
+            $height,
+            $new->getHeight()
         );
     }
 }
