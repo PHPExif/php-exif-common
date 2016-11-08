@@ -11,6 +11,7 @@ use PHPExif\Common\Data\ValueObject\Exif\Copyright;
 use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
+use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
 use PHPExif\Common\Data\ValueObject\Exif\Height;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
@@ -572,6 +573,45 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $height,
             $new->getHeight()
+        );
+    }
+
+    /**
+     * @covers ::withFocalLength
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithFocalLengthReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withFocalLength(new FocalLength('350/10'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getFocalLength
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetFocalLengthReturnsCorrectData()
+    {
+        $focalLength = new FocalLength('350/10');
+        $old = new Exif();
+        $new = $old->withFocalLength($focalLength);
+
+        $this->assertSame(
+            $focalLength,
+            $new->getFocalLength()
         );
     }
 }

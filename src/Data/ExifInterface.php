@@ -18,6 +18,7 @@ use PHPExif\Common\Data\ValueObject\Exif\Copyright;
 use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
+use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
 use PHPExif\Common\Data\ValueObject\Exif\Headline;
 use PHPExif\Common\Data\ValueObject\Exif\Height;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
@@ -39,7 +40,6 @@ interface ExifInterface
     const CAMERA                = 'camera';
     const COLORSPACE            = 'ColorSpace';
     const CREATION_DATE         = 'creationdate';
-    const FOCAL_LENGTH          = 'focalLength';
     const FOCAL_DISTANCE        = 'focalDistance';
     const HORIZONTAL_RESOLUTION = 'horizontalResolution';
     const JOB_TITLE             = 'jobTitle';
@@ -257,4 +257,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withHeight(Height $height);
+
+    /**
+     * Accessor for the focalLength
+     *
+     * @return FocalLength
+     */
+    public function getFocalLength();
+
+    /**
+     * Returns new instance with updated focalLength
+     *
+     * @param FocalLength $focalLength
+     *
+     * @return ExifInterface
+     */
+    public function withFocalLength(FocalLength $focalLength);
 }
