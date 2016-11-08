@@ -19,7 +19,7 @@ namespace PHPExif\Common\Data;
  * @category    PHPExif
  * @package     Common
  */
-final class Iptc implements IptcInterface
+class Iptc implements IptcInterface
 {
     /**
      * Contains the mapping of names to IPTC field numbers

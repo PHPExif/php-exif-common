@@ -12,10 +12,23 @@
 namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Author;
+use PHPExif\Common\Data\ValueObject\Exif\Caption;
+use PHPExif\Common\Data\ValueObject\Exif\Copyright;
+use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
+use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
+use PHPExif\Common\Data\ValueObject\Exif\FocusDistance;
+use PHPExif\Common\Data\ValueObject\Exif\Headline;
+use PHPExif\Common\Data\ValueObject\Exif\Height;
+use PHPExif\Common\Data\ValueObject\Exif\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
+use PHPExif\Common\Data\ValueObject\Exif\Model;
+use PHPExif\Common\Data\ValueObject\Exif\Software;
+use PHPExif\Common\Data\ValueObject\Exif\VerticalResolution;
+use PHPExif\Common\Data\ValueObject\Exif\Width;
 
 /**
  * ExifInterface
@@ -27,31 +40,10 @@ use PHPExif\Common\Data\ValueObject\Exif\MimeType;
  */
 interface ExifInterface
 {
-    const APERTURE              = 'aperture';
-    const AUTHOR                = 'author';
-    const CAMERA                = 'camera';
-    const CAPTION               = 'caption';
     const COLORSPACE            = 'ColorSpace';
-    const COPYRIGHT             = 'copyright';
     const CREATION_DATE         = 'creationdate';
-    const CREDIT                = 'credit';
-    const EXPOSURE              = 'exposure';
-    const FILESIZE              = 'FileSize';
-    const FOCAL_LENGTH          = 'focalLength';
-    const FOCAL_DISTANCE        = 'focalDistance';
-    const HEADLINE              = 'headline';
-    const HEIGHT                = 'height';
-    const HORIZONTAL_RESOLUTION = 'horizontalResolution';
-    const ISO                   = 'iso';
-    const JOB_TITLE             = 'jobTitle';
     const KEYWORDS              = 'keywords';
-    const MIMETYPE              = 'MimeType';
     const ORIENTATION           = 'Orientation';
-    const SOFTWARE              = 'software';
-    const SOURCE                = 'source';
-    const TITLE                 = 'title';
-    const VERTICAL_RESOLUTION   = 'verticalResolution';
-    const WIDTH                 = 'width';
     const GPS                   = 'gps';
 
     /**
@@ -133,4 +125,196 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withMake(Make $make);
+
+    /**
+     * Accessor for the model
+     *
+     * @return Model
+     */
+    public function getModel();
+
+    /**
+     * Returns new instance with updated model
+     *
+     * @param Model $model
+     *
+     * @return ExifInterface
+     */
+    public function withModel(Model $model);
+
+    /**
+     * Accessor for the headline
+     *
+     * @return Headline
+     */
+    public function getHeadline();
+
+    /**
+     * Returns new instance with updated headline
+     *
+     * @param Headline $headline
+     *
+     * @return ExifInterface
+     */
+    public function withHeadline(Headline $headline);
+
+    /**
+     * Accessor for the credit
+     *
+     * @return Credit
+     */
+    public function getCredit();
+
+    /**
+     * Returns new instance with updated credit
+     *
+     * @param Credit $credit
+     *
+     * @return ExifInterface
+     */
+    public function withCredit(Credit $credit);
+
+    /**
+     * Accessor for the copyright
+     *
+     * @return Copyright
+     */
+    public function getCopyright();
+
+    /**
+     * Returns new instance with updated copyright
+     *
+     * @param Copyright $copyright
+     *
+     * @return ExifInterface
+     */
+    public function withCopyright(Copyright $copyright);
+
+    /**
+     * Accessor for the caption
+     *
+     * @return Caption
+     */
+    public function getCaption();
+
+    /**
+     * Returns new instance with updated caption
+     *
+     * @param Caption $caption
+     *
+     * @return ExifInterface
+     */
+    public function withCaption(Caption $caption);
+
+    /**
+     * Accessor for the author
+     *
+     * @return Author
+     */
+    public function getAuthor();
+
+    /**
+     * Returns new instance with updated author
+     *
+     * @param Author $author
+     *
+     * @return ExifInterface
+     */
+    public function withAuthor(Author $author);
+
+    /**
+     * Accessor for the width
+     *
+     * @return Width
+     */
+    public function getWidth();
+
+    /**
+     * Returns new instance with updated width
+     *
+     * @param Width $width
+     *
+     * @return ExifInterface
+     */
+    public function withWidth(Width $width);
+
+    /**
+     * Accessor for the height
+     *
+     * @return Height
+     */
+    public function getHeight();
+
+    /**
+     * Returns new instance with updated height
+     *
+     * @param Height $height
+     *
+     * @return ExifInterface
+     */
+    public function withHeight(Height $height);
+
+    /**
+     * Accessor for the focalLength
+     *
+     * @return FocalLength
+     */
+    public function getFocalLength();
+
+    /**
+     * Returns new instance with updated focalLength
+     *
+     * @param FocalLength $focalLength
+     *
+     * @return ExifInterface
+     */
+    public function withFocalLength(FocalLength $focalLength);
+
+    /**
+     * Accessor for the focusDistance
+     *
+     * @return FocusDistance
+     */
+    public function getFocusDistance();
+
+    /**
+     * Returns new instance with updated focusDistance
+     *
+     * @param FocusDistance $focusDistance
+     *
+     * @return ExifInterface
+     */
+    public function withFocusDistance(FocusDistance $focusDistance);
+
+    /**
+     * Accessor for the horizontalResolution
+     *
+     * @return HorizontalResolution
+     */
+    public function getHorizontalResolution();
+
+    /**
+     * Returns new instance with updated horizontalResolution
+     *
+     * @param HorizontalResolution $horizontalResolution
+     *
+     * @return ExifInterface
+     */
+    public function withHorizontalResolution(HorizontalResolution $horizontalResolution);
+
+    /**
+     * Accessor for the verticalResolution
+     *
+     * @return VerticalResolution
+     */
+    public function getVerticalResolution();
+
+    /**
+     * Returns new instance with updated verticalResolution
+     *
+     * @param VerticalResolution $verticalResolution
+     *
+     * @return ExifInterface
+     */
+    public function withVerticalResolution(VerticalResolution $verticalResolution);
 }

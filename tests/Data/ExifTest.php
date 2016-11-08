@@ -5,10 +5,23 @@ namespace Tests\PHPExif\Common\Data;
 use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Exif\Aperture;
+use PHPExif\Common\Data\ValueObject\Exif\Author;
+use PHPExif\Common\Data\ValueObject\Exif\Caption;
+use PHPExif\Common\Data\ValueObject\Exif\Copyright;
+use PHPExif\Common\Data\ValueObject\Exif\Credit;
 use PHPExif\Common\Data\ValueObject\Exif\Filename;
 use PHPExif\Common\Data\ValueObject\Exif\Filesize;
+use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
+use PHPExif\Common\Data\ValueObject\Exif\FocusDistance;
+use PHPExif\Common\Data\ValueObject\Exif\Headline;
+use PHPExif\Common\Data\ValueObject\Exif\Height;
+use PHPExif\Common\Data\ValueObject\Exif\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\Exif\Make;
 use PHPExif\Common\Data\ValueObject\Exif\MimeType;
+use PHPExif\Common\Data\ValueObject\Exif\Model;
+use PHPExif\Common\Data\ValueObject\Exif\Software;
+use PHPExif\Common\Data\ValueObject\Exif\VerticalResolution;
+use PHPExif\Common\Data\ValueObject\Exif\Width;
 
 /**
  * Class: ExifTest
@@ -212,6 +225,513 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $make,
             $new->getMake()
+        );
+    }
+
+    /**
+     * @covers ::withModel
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithModelReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withModel(new Model('Nikon D90'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getModel
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetModelReturnsCorrectData()
+    {
+        $model = new Model('Nikon D90');
+        $old = new Exif();
+        $new = $old->withModel($model);
+
+        $this->assertSame(
+            $model,
+            $new->getModel()
+        );
+    }
+
+    /**
+     * @covers ::withSoftware
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithSoftwareReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withSoftware(new Software('Adobe Photoshop Lightroom'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getSoftware
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetSoftwareReturnsCorrectData()
+    {
+        $software = new Software('Adobe Photoshop Lightroom');
+        $old = new Exif();
+        $new = $old->withSoftware($software);
+
+        $this->assertSame(
+            $software,
+            $new->getSoftware()
+        );
+    }
+
+    /**
+     * @covers ::withHeadline
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithHeadlineReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withHeadline(new Headline('School \'s out for summer!'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getHeadline
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetHeadlineReturnsCorrectData()
+    {
+        $headline = new Headline('Smoking in the boys room');
+        $old = new Exif();
+        $new = $old->withHeadline($headline);
+
+        $this->assertSame(
+            $headline,
+            $new->getHeadline()
+        );
+    }
+
+    /**
+     * @covers ::withCredit
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithCreditReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withCredit(new Credit('Tom Van Herreweghe'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getCredit
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetCreditReturnsCorrectData()
+    {
+        $credit = new Credit('Tom Van Herreweghe');
+        $old = new Exif();
+        $new = $old->withCredit($credit);
+
+        $this->assertSame(
+            $credit,
+            $new->getCredit()
+        );
+    }
+
+    /**
+     * @covers ::withCopyright
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithCopyrightReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withCopyright(new Copyright('Tom Van Herreweghe'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getCopyright
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetCopyrightReturnsCorrectData()
+    {
+        $copyright = new Copyright('Tom Van Herreweghe');
+        $old = new Exif();
+        $new = $old->withCopyright($copyright);
+
+        $this->assertSame(
+            $copyright,
+            $new->getCopyright()
+        );
+    }
+
+    /**
+     * @covers ::withCaption
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithCaptionReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withCaption(new Caption('Lorum Ipsum'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getCaption
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetCaptionReturnsCorrectData()
+    {
+        $caption = new Caption('Lorum Ipsum');
+        $old = new Exif();
+        $new = $old->withCaption($caption);
+
+        $this->assertSame(
+            $caption,
+            $new->getCaption()
+        );
+    }
+
+    /**
+     * @covers ::withAuthor
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithAuthorReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withAuthor(new Author('Jack PhotoG'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getAuthor
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetAuthorReturnsCorrectData()
+    {
+        $author = new Author('Jack PhotoG');
+        $old = new Exif();
+        $new = $old->withAuthor($author);
+
+        $this->assertSame(
+            $author,
+            $new->getAuthor()
+        );
+    }
+
+    /**
+     * @covers ::withWidth
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithWidthReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withWidth(new Width(1024));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getWidth
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetWidthReturnsCorrectData()
+    {
+        $width = new Width(2048);
+        $old = new Exif();
+        $new = $old->withWidth($width);
+
+        $this->assertSame(
+            $width,
+            $new->getWidth()
+        );
+    }
+
+    /**
+     * @covers ::withHeight
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithHeightReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withHeight(new Height(1024));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getHeight
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetHeightReturnsCorrectData()
+    {
+        $height = new Height(2048);
+        $old = new Exif();
+        $new = $old->withHeight($height);
+
+        $this->assertSame(
+            $height,
+            $new->getHeight()
+        );
+    }
+
+    /**
+     * @covers ::withFocalLength
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithFocalLengthReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withFocalLength(new FocalLength('350/10'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getFocalLength
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetFocalLengthReturnsCorrectData()
+    {
+        $focalLength = new FocalLength('350/10');
+        $old = new Exif();
+        $new = $old->withFocalLength($focalLength);
+
+        $this->assertSame(
+            $focalLength,
+            $new->getFocalLength()
+        );
+    }
+
+    /**
+     * @covers ::withFocusDistance
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithFocusDistanceReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withFocusDistance(new FocusDistance('7.55m'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getFocusDistance
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetFocusDistanceReturnsCorrectData()
+    {
+        $focusDistance = new FocusDistance('2.49m');
+        $old = new Exif();
+        $new = $old->withFocusDistance($focusDistance);
+
+        $this->assertSame(
+            $focusDistance,
+            $new->getFocusDistance()
+        );
+    }
+
+    /**
+     * @covers ::withHorizontalResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithHorizontalResolutionReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withHorizontalResolution(new HorizontalResolution('300/1'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getHorizontalResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetHorizontalResolutionReturnsCorrectData()
+    {
+        $horizontalResolution = new HorizontalResolution('300/1');
+        $old = new Exif();
+        $new = $old->withHorizontalResolution($horizontalResolution);
+
+        $this->assertSame(
+            $horizontalResolution,
+            $new->getHorizontalResolution()
+        );
+    }
+
+    /**
+     * @covers ::withVerticalResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithVerticalResolutionReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withVerticalResolution(new VerticalResolution('300/1'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getVerticalResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetVerticalResolutionReturnsCorrectData()
+    {
+        $verticalResolution = new VerticalResolution('300/1');
+        $old = new Exif();
+        $new = $old->withVerticalResolution($verticalResolution);
+
+        $this->assertSame(
+            $verticalResolution,
+            $new->getVerticalResolution()
         );
     }
 }

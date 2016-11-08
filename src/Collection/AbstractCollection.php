@@ -28,12 +28,12 @@ abstract class AbstractCollection implements Collection
      *
      * @var array
      */
-    private $elements;
+    protected $elements;
 
     /**
      * Collection constructor
      *
-     * @param array $data
+     * @param array $elements
      */
     public function __construct(array $elements = array())
     {

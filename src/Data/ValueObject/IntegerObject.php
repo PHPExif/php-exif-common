@@ -17,56 +17,56 @@ use \JsonSerializable;
 use \RuntimeException;
 
 /**
- * String Object
+ * IntegerObject class
  *
- * Abstract class for objects with only String data
+ * Abstract class for objects with only integer data
  *
  * @category    PHPExif
  * @package     Common
  */
-abstract class StringObject implements JsonSerializable
+abstract class IntegerObject implements JsonSerializable
 {
     /**
-     * Contains the string data
+     * Contains the value
      *
-     * @var string
+     * @var int
      */
-    protected $stringData;
+    protected $value;
 
     /**
-     * @param string $stringData
+     * @param int $value
      *
-     * @throws InvalidArgumentException If given argument is not a string
+     * @throws InvalidArgumentException If given data is not an integer
      */
-    public function __construct($stringData)
+    public function __construct($value)
     {
-        if (!is_string($stringData)) {
-            throw new InvalidArgumentException('Given data is not a string');
+        if (!is_int($value)) {
+            throw new InvalidArgumentException('Given data is not an integer');
         }
 
-        $this->setStringData($stringData);
+        $this->setValue($value);
     }
 
     /**
-     * Sets the stringData
+     * Sets the value
      *
-     * @param string $stringData
+     * @param int $value
      *
      * @return void
      */
-    protected function setStringData($stringData)
+    protected function setValue($value)
     {
-        $this->stringData = $stringData;
+        $this->value = $value;
     }
 
     /**
-     * Getter for stringData
+     * Getter for value
      *
-     * @return string
+     * @return int
      */
-    public function getStringData()
+    public function getValue()
     {
-        return $this->stringData;
+        return $this->value;
     }
 
     /**
@@ -76,7 +76,7 @@ abstract class StringObject implements JsonSerializable
      */
     public function jsonSerialize()
     {
-        return (string) $this;
+        return (int) $this->getValue();
     }
 
     /**
@@ -86,6 +86,6 @@ abstract class StringObject implements JsonSerializable
      */
     public function __toString()
     {
-        return $this->getStringData();
+        return (string) $this->getValue();
     }
 }
