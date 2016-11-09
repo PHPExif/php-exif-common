@@ -33,5 +33,5 @@ interface MapperInterface
      *
      * @return void
      */
-    public function map(array $input, MetadataInterface $output);
+    public function map(array $input, MetadataInterface &$output);
 }
