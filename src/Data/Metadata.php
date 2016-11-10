@@ -46,6 +46,22 @@ class Metadata implements MetadataInterface
     /**
      * {@inheritDoc}
      */
+    public function setRawData(array $data)
+    {
+        $this->rawData = $data;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRawData()
+    {
+        return $this->rawData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function withExif(ExifInterface $exif)
     {
         $new = clone $this;

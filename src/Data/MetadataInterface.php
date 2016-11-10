@@ -22,6 +22,20 @@ namespace PHPExif\Common\Data;
 interface MetadataInterface
 {
     /**
+     * Returns the raw data
+     *
+     * @return array
+     */
+    public function getRawData();
+
+    /**
+     * Sets the raw data
+     *
+     * @param array $data
+     */
+    public function setRawData(array $data);
+
+    /**
      * Returns new instance with given EXIF data
      *
      * @param ExifInterface $exif
