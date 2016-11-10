@@ -9,6 +9,7 @@ use PHPExif\Common\Data\ValueObject\Author;
 use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
+use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
@@ -16,6 +17,7 @@ use PHPExif\Common\Data\ValueObject\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Headline;
 use PHPExif\Common\Data\ValueObject\Height;
 use PHPExif\Common\Data\ValueObject\HorizontalResolution;
+use PHPExif\Common\Data\ValueObject\IsoSpeed;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
@@ -732,6 +734,84 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $verticalResolution,
             $new->getVerticalResolution()
+        );
+    }
+
+    /**
+     * @covers ::withExposureTime
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithExposureTimeReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withExposureTime(new ExposureTime('10/300'));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getExposureTime
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetExposureTimeReturnsCorrectData()
+    {
+        $exposureTime = new ExposureTime('1/60s');
+        $old = new Exif();
+        $new = $old->withExposureTime($exposureTime);
+
+        $this->assertSame(
+            $exposureTime,
+            $new->getExposureTime()
+        );
+    }
+
+    /**
+     * @covers ::withIsoSpeed
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithIsoSpeedReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withIsoSpeed(new IsoSpeed(200));
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getIsoSpeed
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetIsoSpeedReturnsCorrectData()
+    {
+        $isoSpeed = new IsoSpeed(400);
+        $old = new Exif();
+        $new = $old->withIsoSpeed($isoSpeed);
+
+        $this->assertSame(
+            $isoSpeed,
+            $new->getIsoSpeed()
         );
     }
 }
