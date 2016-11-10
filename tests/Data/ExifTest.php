@@ -6,15 +6,11 @@ use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
-use PHPExif\Common\Data\ValueObject\Caption;
-use PHPExif\Common\Data\ValueObject\Copyright;
-use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
 use PHPExif\Common\Data\ValueObject\FocusDistance;
-use PHPExif\Common\Data\ValueObject\Headline;
 use PHPExif\Common\Data\ValueObject\Height;
 use PHPExif\Common\Data\ValueObject\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
@@ -305,162 +301,6 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $software,
             $new->getSoftware()
-        );
-    }
-
-    /**
-     * @covers ::withHeadline
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testWithHeadlineReturnsNewExifInstance()
-    {
-        $old = new Exif();
-        $new = $old->withHeadline(new Headline('School \'s out for summer!'));
-
-        $this->assertInstanceOf(
-            Exif::class,
-            $new
-        );
-
-        $this->assertNotSame($old, $new);
-    }
-
-    /**
-     * @covers ::getHeadline
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testGetHeadlineReturnsCorrectData()
-    {
-        $headline = new Headline('Smoking in the boys room');
-        $old = new Exif();
-        $new = $old->withHeadline($headline);
-
-        $this->assertSame(
-            $headline,
-            $new->getHeadline()
-        );
-    }
-
-    /**
-     * @covers ::withCredit
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testWithCreditReturnsNewExifInstance()
-    {
-        $old = new Exif();
-        $new = $old->withCredit(new Credit('Tom Van Herreweghe'));
-
-        $this->assertInstanceOf(
-            Exif::class,
-            $new
-        );
-
-        $this->assertNotSame($old, $new);
-    }
-
-    /**
-     * @covers ::getCredit
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testGetCreditReturnsCorrectData()
-    {
-        $credit = new Credit('Tom Van Herreweghe');
-        $old = new Exif();
-        $new = $old->withCredit($credit);
-
-        $this->assertSame(
-            $credit,
-            $new->getCredit()
-        );
-    }
-
-    /**
-     * @covers ::withCopyright
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testWithCopyrightReturnsNewExifInstance()
-    {
-        $old = new Exif();
-        $new = $old->withCopyright(new Copyright('Tom Van Herreweghe'));
-
-        $this->assertInstanceOf(
-            Exif::class,
-            $new
-        );
-
-        $this->assertNotSame($old, $new);
-    }
-
-    /**
-     * @covers ::getCopyright
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testGetCopyrightReturnsCorrectData()
-    {
-        $copyright = new Copyright('Tom Van Herreweghe');
-        $old = new Exif();
-        $new = $old->withCopyright($copyright);
-
-        $this->assertSame(
-            $copyright,
-            $new->getCopyright()
-        );
-    }
-
-    /**
-     * @covers ::withCaption
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testWithCaptionReturnsNewExifInstance()
-    {
-        $old = new Exif();
-        $new = $old->withCaption(new Caption('Lorum Ipsum'));
-
-        $this->assertInstanceOf(
-            Exif::class,
-            $new
-        );
-
-        $this->assertNotSame($old, $new);
-    }
-
-    /**
-     * @covers ::getCaption
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testGetCaptionReturnsCorrectData()
-    {
-        $caption = new Caption('Lorum Ipsum');
-        $old = new Exif();
-        $new = $old->withCaption($caption);
-
-        $this->assertSame(
-            $caption,
-            $new->getCaption()
         );
     }
 
