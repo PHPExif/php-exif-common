@@ -32,6 +32,11 @@ class Metadata implements MetadataInterface
     protected $iptc;
 
     /**
+     * @var array
+     */
+    protected $rawData = [];
+
+    /**
      * Constructor
      *
      * @param ExifInterface $exif
