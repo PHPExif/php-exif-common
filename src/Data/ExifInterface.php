@@ -16,6 +16,7 @@ use PHPExif\Common\Data\ValueObject\Author;
 use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
+use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
@@ -23,6 +24,7 @@ use PHPExif\Common\Data\ValueObject\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Headline;
 use PHPExif\Common\Data\ValueObject\Height;
 use PHPExif\Common\Data\ValueObject\HorizontalResolution;
+use PHPExif\Common\Data\ValueObject\IsoSpeed;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
@@ -317,4 +319,36 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withVerticalResolution(VerticalResolution $verticalResolution);
+
+    /**
+     * Accessor for the exposureTime
+     *
+     * @return ExposureTime
+     */
+    public function getExposureTime();
+
+    /**
+     * Returns new instance with updated exposureTime
+     *
+     * @param ExposureTime $exposureTime
+     *
+     * @return ExifInterface
+     */
+    public function withExposureTime(ExposureTime $exposureTime);
+
+    /**
+     * Accessor for the isoSpeed
+     *
+     * @return IsoSpeed
+     */
+    public function getIsoSpeed();
+
+    /**
+     * Returns new instance with updated isoSpeed
+     *
+     * @param IsoSpeed $isoSpeed
+     *
+     * @return ExifInterface
+     */
+    public function withIsoSpeed(IsoSpeed $isoSpeed);
 }
