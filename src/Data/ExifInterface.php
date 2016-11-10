@@ -11,24 +11,24 @@
 
 namespace PHPExif\Common\Data;
 
-use PHPExif\Common\Data\ValueObject\Exif\Aperture;
-use PHPExif\Common\Data\ValueObject\Exif\Author;
-use PHPExif\Common\Data\ValueObject\Exif\Caption;
-use PHPExif\Common\Data\ValueObject\Exif\Copyright;
-use PHPExif\Common\Data\ValueObject\Exif\Credit;
-use PHPExif\Common\Data\ValueObject\Exif\Filename;
-use PHPExif\Common\Data\ValueObject\Exif\Filesize;
-use PHPExif\Common\Data\ValueObject\Exif\FocalLength;
-use PHPExif\Common\Data\ValueObject\Exif\FocusDistance;
-use PHPExif\Common\Data\ValueObject\Exif\Headline;
-use PHPExif\Common\Data\ValueObject\Exif\Height;
-use PHPExif\Common\Data\ValueObject\Exif\HorizontalResolution;
-use PHPExif\Common\Data\ValueObject\Exif\Make;
-use PHPExif\Common\Data\ValueObject\Exif\MimeType;
-use PHPExif\Common\Data\ValueObject\Exif\Model;
-use PHPExif\Common\Data\ValueObject\Exif\Software;
-use PHPExif\Common\Data\ValueObject\Exif\VerticalResolution;
-use PHPExif\Common\Data\ValueObject\Exif\Width;
+use PHPExif\Common\Data\ValueObject\Aperture;
+use PHPExif\Common\Data\ValueObject\Author;
+use PHPExif\Common\Data\ValueObject\Caption;
+use PHPExif\Common\Data\ValueObject\Copyright;
+use PHPExif\Common\Data\ValueObject\Credit;
+use PHPExif\Common\Data\ValueObject\Filename;
+use PHPExif\Common\Data\ValueObject\Filesize;
+use PHPExif\Common\Data\ValueObject\FocalLength;
+use PHPExif\Common\Data\ValueObject\FocusDistance;
+use PHPExif\Common\Data\ValueObject\Headline;
+use PHPExif\Common\Data\ValueObject\Height;
+use PHPExif\Common\Data\ValueObject\HorizontalResolution;
+use PHPExif\Common\Data\ValueObject\Make;
+use PHPExif\Common\Data\ValueObject\MimeType;
+use PHPExif\Common\Data\ValueObject\Model;
+use PHPExif\Common\Data\ValueObject\Software;
+use PHPExif\Common\Data\ValueObject\VerticalResolution;
+use PHPExif\Common\Data\ValueObject\Width;
 
 /**
  * ExifInterface
