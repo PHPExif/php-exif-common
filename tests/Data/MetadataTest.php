@@ -110,4 +110,32 @@ class MetadataTest extends \PHPUnit_Framework_TestCase
             $new->getIptc()
         );
     }
+
+    /**
+     * @covers ::getRawData
+     * @covers ::setRawData
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testRawData()
+    {
+        $exif = new Exif;
+        $iptc = new Iptc;
+        $metadata = new Metadata($exif, $iptc);
+
+        $rawData = [
+            'caption' => 'This is a caption',
+            'DateTimeOriginal' => '2016-11-10 10:06:30',
+        ];
+
+        $metadata->setRawData($rawData);
+        $actual = $metadata->getRawData();
+
+        $this->assertEquals(
+            $rawData,
+            $actual
+        );
+    }
 }
