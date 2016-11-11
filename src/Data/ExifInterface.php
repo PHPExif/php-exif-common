@@ -13,15 +13,11 @@ namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
-use PHPExif\Common\Data\ValueObject\Caption;
-use PHPExif\Common\Data\ValueObject\Copyright;
-use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
 use PHPExif\Common\Data\ValueObject\FocusDistance;
-use PHPExif\Common\Data\ValueObject\Headline;
 use PHPExif\Common\Data\ValueObject\Height;
 use PHPExif\Common\Data\ValueObject\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
@@ -143,70 +139,6 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withModel(Model $model);
-
-    /**
-     * Accessor for the headline
-     *
-     * @return Headline
-     */
-    public function getHeadline();
-
-    /**
-     * Returns new instance with updated headline
-     *
-     * @param Headline $headline
-     *
-     * @return ExifInterface
-     */
-    public function withHeadline(Headline $headline);
-
-    /**
-     * Accessor for the credit
-     *
-     * @return Credit
-     */
-    public function getCredit();
-
-    /**
-     * Returns new instance with updated credit
-     *
-     * @param Credit $credit
-     *
-     * @return ExifInterface
-     */
-    public function withCredit(Credit $credit);
-
-    /**
-     * Accessor for the copyright
-     *
-     * @return Copyright
-     */
-    public function getCopyright();
-
-    /**
-     * Returns new instance with updated copyright
-     *
-     * @param Copyright $copyright
-     *
-     * @return ExifInterface
-     */
-    public function withCopyright(Copyright $copyright);
-
-    /**
-     * Accessor for the caption
-     *
-     * @return Caption
-     */
-    public function getCaption();
-
-    /**
-     * Returns new instance with updated caption
-     *
-     * @param Caption $caption
-     *
-     * @return ExifInterface
-     */
-    public function withCaption(Caption $caption);
 
     /**
      * Accessor for the author

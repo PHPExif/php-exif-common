@@ -11,6 +11,11 @@
 
 namespace PHPExif\Common\Data;
 
+use PHPExif\Common\Data\ValueObject\Caption;
+use PHPExif\Common\Data\ValueObject\Copyright;
+use PHPExif\Common\Data\ValueObject\Credit;
+use PHPExif\Common\Data\ValueObject\Headline;
+
 /**
  * Iptc class
  *
@@ -21,6 +26,26 @@ namespace PHPExif\Common\Data;
  */
 class Iptc implements IptcInterface
 {
+    /**
+     * @var Caption
+     */
+    protected $caption;
+
+    /**
+     * @var Copyright
+     */
+    protected $copyright;
+
+    /**
+     * @var Credit
+     */
+    protected $credit;
+
+    /**
+     * @var Headline
+     */
+    protected $headline;
+
     /**
      * Contains the mapping of names to IPTC field numbers
      *
@@ -36,4 +61,80 @@ class Iptc implements IptcInterface
         'source'    => '2#115',
         'title'     => '2#005',
     );
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getHeadline()
+    {
+        return $this->headline;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withHeadline(Headline $headline)
+    {
+        $new = clone $this;
+        $new->headline = $headline;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCredit()
+    {
+        return $this->credit;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withCredit(Credit $credit)
+    {
+        $new = clone $this;
+        $new->credit = $credit;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCopyright()
+    {
+        return $this->copyright;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withCopyright(Copyright $copyright)
+    {
+        $new = clone $this;
+        $new->copyright = $copyright;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCaption()
+    {
+        return $this->caption;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withCaption(Caption $caption)
+    {
+        $new = clone $this;
+        $new->caption = $caption;
+
+        return $new;
+    }
 }

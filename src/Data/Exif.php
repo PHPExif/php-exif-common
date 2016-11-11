@@ -13,15 +13,11 @@ namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
-use PHPExif\Common\Data\ValueObject\Caption;
-use PHPExif\Common\Data\ValueObject\Copyright;
-use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
 use PHPExif\Common\Data\ValueObject\FocusDistance;
-use PHPExif\Common\Data\ValueObject\Headline;
 use PHPExif\Common\Data\ValueObject\Height;
 use PHPExif\Common\Data\ValueObject\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
@@ -53,21 +49,6 @@ class Exif implements ExifInterface
     protected $author;
 
     /**
-     * @var Caption
-     */
-    protected $caption;
-
-    /**
-     * @var Copyright
-     */
-    protected $copyright;
-
-    /**
-     * @var Credit
-     */
-    protected $credit;
-
-    /**
      * @var ExposureTime
      */
     protected $exposureTime;
@@ -91,11 +72,6 @@ class Exif implements ExifInterface
      * @var FocusDistance
      */
     protected $focusDistance;
-
-    /**
-     * @var Headline
-     */
-    protected $headline;
 
     /**
      * @var Height
@@ -271,82 +247,6 @@ class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->software = $software;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getHeadline()
-    {
-        return $this->headline;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withHeadline(Headline $headline)
-    {
-        $new = clone $this;
-        $new->headline = $headline;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCredit()
-    {
-        return $this->credit;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withCredit(Credit $credit)
-    {
-        $new = clone $this;
-        $new->credit = $credit;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCopyright()
-    {
-        return $this->copyright;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withCopyright(Copyright $copyright)
-    {
-        $new = clone $this;
-        $new->copyright = $copyright;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCaption()
-    {
-        return $this->caption;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withCaption(Caption $caption)
-    {
-        $new = clone $this;
-        $new->caption = $caption;
 
         return $new;
     }
