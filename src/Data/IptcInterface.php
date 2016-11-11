@@ -15,6 +15,7 @@ use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\Headline;
+use PHPExif\Common\Data\ValueObject\Title;
 
 /**
  * IptcInterface
@@ -89,4 +90,20 @@ interface IptcInterface
      * @return IptcInterface
      */
     public function withCaption(Caption $caption);
+
+    /**
+     * Accessor for the title
+     *
+     * @return Title
+     */
+    public function getTitle();
+
+    /**
+     * Returns new instance with updated title
+     *
+     * @param Title $title
+     *
+     * @return IptcInterface
+     */
+    public function withTitle(Title $title);
 }
