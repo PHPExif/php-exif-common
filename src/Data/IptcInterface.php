@@ -38,7 +38,7 @@ interface IptcInterface
      *
      * @param Headline $headline
      *
-     * @return ExifInterface
+     * @return IptcInterface
      */
     public function withHeadline(Headline $headline);
 
@@ -54,7 +54,7 @@ interface IptcInterface
      *
      * @param Credit $credit
      *
-     * @return ExifInterface
+     * @return IptcInterface
      */
     public function withCredit(Credit $credit);
 
@@ -70,7 +70,7 @@ interface IptcInterface
      *
      * @param Copyright $copyright
      *
-     * @return ExifInterface
+     * @return IptcInterface
      */
     public function withCopyright(Copyright $copyright);
 
@@ -86,7 +86,7 @@ interface IptcInterface
      *
      * @param Caption $caption
      *
-     * @return ExifInterface
+     * @return IptcInterface
      */
     public function withCaption(Caption $caption);
 }
