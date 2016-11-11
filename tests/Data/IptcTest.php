@@ -8,6 +8,7 @@ use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\Headline;
+use PHPExif\Common\Data\ValueObject\Title;
 
 /**
  * Class: IptcTest
@@ -172,6 +173,45 @@ class IptcTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $caption,
             $new->getCaption()
+        );
+    }
+
+    /**
+     * @covers ::withTitle
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithTitleReturnsNewIptcInstance()
+    {
+        $old = new Iptc();
+        $new = $old->withTitle(new Title('Morning Glory Pool'));
+
+        $this->assertInstanceOf(
+            Iptc::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getTitle
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetTitleReturnsCorrectData()
+    {
+        $title = new Title('Morning Glory Pool');
+        $old = new Iptc();
+        $new = $old->withTitle($title);
+
+        $this->assertSame(
+            $title,
+            $new->getTitle()
         );
     }
 }

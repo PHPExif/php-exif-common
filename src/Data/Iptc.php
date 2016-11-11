@@ -15,6 +15,7 @@ use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\Headline;
+use PHPExif\Common\Data\ValueObject\Title;
 
 /**
  * Iptc class
@@ -47,15 +48,16 @@ class Iptc implements IptcInterface
     protected $headline;
 
     /**
+     * @var Title
+     */
+    protected $title;
+
+    /**
      * Contains the mapping of names to IPTC field numbers
      *
      * @var array
      */
     public static $iptcMapping = array(
-        'caption'   => '2#120',
-        'copyright' => '2#116',
-        'credit'    => '2#110',
-        'headline'  => '2#105',
         'jobtitle'  => '2#085',
         'keywords'  => '2#025',
         'source'    => '2#115',
@@ -134,6 +136,25 @@ class Iptc implements IptcInterface
     {
         $new = clone $this;
         $new->caption = $caption;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withTitle(Title $title)
+    {
+        $new = clone $this;
+        $new->title = $title;
 
         return $new;
     }
