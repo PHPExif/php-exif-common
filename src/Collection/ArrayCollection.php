@@ -22,7 +22,8 @@ use PHPExif\Common\Exception\Collection\ElementNotExistsException;
  * @package     Common
  */
 class ArrayCollection implements Collection
-{    /**
+{
+    /**
      * Holds the entries of the collection
      *
      * @var array
@@ -94,5 +95,4 @@ class ArrayCollection implements Collection
     {
         return count($this->elements);
     }
-
 }
