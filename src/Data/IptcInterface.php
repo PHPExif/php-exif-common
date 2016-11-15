@@ -11,6 +11,7 @@
 
 namespace PHPExif\Common\Data;
 
+use PHPExif\Common\Collection\Collection;
 use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
@@ -106,4 +107,20 @@ interface IptcInterface
      * @return IptcInterface
      */
     public function withTitle(Title $title);
+
+    /**
+     * Returns the collection of keywords
+     *
+     * @return Collection
+     */
+    public function getKeywords();
+
+    /**
+     * Returns new instance with updated keywords
+     *
+     * @param Collection $keywords
+     *
+     * @return IptcInterface
+     */
+    public function withKeywords(Collection $keywords);
 }

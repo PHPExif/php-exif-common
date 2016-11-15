@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstract implementation of a Collection
+ * Basic array implementation of a Collection
  *
  * @link        http://github.com/PHPExif/php-exif-common for the canonical source repository
  * @copyright   Copyright (c) 2016 Tom Van Herreweghe <tom@theanalogguy.be>
@@ -16,12 +16,12 @@ use PHPExif\Common\Exception\Collection\ElementAlreadyExistsException;
 use PHPExif\Common\Exception\Collection\ElementNotExistsException;
 
 /**
- * AbstractCollection class
+ * ArrayCollection class
  *
  * @category    PHPExif
  * @package     Common
  */
-abstract class AbstractCollection implements Collection
+class ArrayCollection implements Collection
 {
     /**
      * Holds the entries of the collection
@@ -39,15 +39,25 @@ abstract class AbstractCollection implements Collection
     {
         $this->elements = array();
 
-        foreach ($elements as $name => $config) {
-            $this->add($name, $config);
+        foreach ($elements as $name => $value) {
+            $this->set($name, $value);
         }
     }
 
     /**
      * @inheritDoc
      */
-    public function add($key, $value)
+    public function add($value)
+    {
+        $this->elements[] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function set($key, $value)
     {
         if ($this->exists($key)) {
             throw ElementAlreadyExistsException::withKey($key);

@@ -11,6 +11,7 @@
 
 namespace PHPExif\Common\Data;
 
+use PHPExif\Common\Collection\Collection;
 use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
@@ -53,6 +54,11 @@ class Iptc implements IptcInterface
     protected $title;
 
     /**
+     * @var Collection
+     */
+    protected $keywords;
+
+    /**
      * Contains the mapping of names to IPTC field numbers
      *
      * @var array
@@ -61,7 +67,6 @@ class Iptc implements IptcInterface
         'jobtitle'  => '2#085',
         'keywords'  => '2#025',
         'source'    => '2#115',
-        'title'     => '2#005',
     );
 
     /**
@@ -155,6 +160,25 @@ class Iptc implements IptcInterface
     {
         $new = clone $this;
         $new->title = $title;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withKeywords(Collection $keywords)
+    {
+        $new = clone $this;
+        $new->keywords = $keywords;
 
         return $new;
     }
