@@ -3,19 +3,19 @@
 namespace Tests\PHPExif\Common\Collection;
 
 use Mockery as m;
-use PHPExif\Common\Collection\AbstractCollection;
+use PHPExif\Common\Collection\ArrayCollection;
 use PHPExif\Common\Exception\Collection\ElementAlreadyExistsException;
 use PHPExif\Common\Exception\Collection\ElementNotExistsException;
 
 /**
- * Class: AbstractCollectionTest
+ * Class: ArrayCollectionTest
  *
  * @see \PHPUnit_Framework_TestCase
  * @abstract
- * @coversDefaultClass \PHPExif\Common\Collection\AbstractCollection
+ * @coversDefaultClass \PHPExif\Common\Collection\ArrayCollection
  * @covers ::<!public>
  */
-class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
+class ArrayCollectionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers ::__construct
@@ -56,7 +56,7 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
         };
 
         $mock = m::mock(
-            AbstractCollection::class
+            ArrayCollection::class
         )->shouldDeferMissing();
         $mock->shouldReceive('add')
             ->with(
@@ -92,7 +92,7 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
         $this->expectException(ElementAlreadyExistsException::class);
 
         $mock = m::mock(
-            AbstractCollection::class . '[exists]',
+            ArrayCollection::class . '[exists]',
             array()
         )->shouldDeferMissing();
         $mock->shouldReceive('exists')
@@ -111,7 +111,7 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
     public function testAddReturnsCurrentInstance()
     {
         $mock = m::mock(
-            AbstractCollection::class . '[exists]',
+            ArrayCollection::class . '[exists]',
             array()
         )->shouldDeferMissing();
         $mock->shouldReceive('exists')
@@ -135,7 +135,7 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
     public function testAddInsertsInCollection()
     {
         $mock = m::mock(
-            AbstractCollection::class . '[exists]',
+            ArrayCollection::class . '[exists]',
             array()
         )->shouldDeferMissing();
         $mock->shouldReceive('exists')
@@ -164,7 +164,7 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
     public function testExistsCorrectlyDeterminesExistenceOfKey()
     {
         $mock = m::mock(
-            AbstractCollection::class,
+            ArrayCollection::class,
             array()
         )->shouldDeferMissing();
 
@@ -188,7 +188,7 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
     public function testCountReturnsCollectionCount()
     {
         $mock = m::mock(
-            AbstractCollection::class,
+            ArrayCollection::class,
             array()
         )->shouldDeferMissing();
 
@@ -216,7 +216,7 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
         $this->expectException(ElementNotExistsException::class);
 
         $mock = m::mock(
-            AbstractCollection::class . '[exists]',
+            ArrayCollection::class . '[exists]',
             array()
         )->shouldDeferMissing();
         $mock->shouldReceive('exists')
@@ -235,7 +235,7 @@ class AbstractCollectionTest extends \PHPUnit_Framework_TestCase
     public function testGetReturnsCorrectData()
     {
         $mock = m::mock(
-            AbstractCollection::class,
+            ArrayCollection::class,
             array()
         )->shouldDeferMissing();
 
