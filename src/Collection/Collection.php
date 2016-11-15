@@ -26,6 +26,15 @@ use PHPExif\Common\Exception\Collection\ElementNotExistsException;
 interface Collection
 {
     /**
+     * Adds a $value to the elements
+     *
+     * @param mixed $value
+     *
+     * @return Collection
+     */
+    public function add($value);
+
+    /**
      * Adds a $value to the elements with key $key
      *
      * @param string $key
@@ -36,7 +45,7 @@ interface Collection
      *
      * @return Collection
      */
-    public function add($key, $value);
+    public function set($key, $value);
 
     /**
      * Determines if element with given key exists in the collection
