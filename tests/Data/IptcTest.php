@@ -10,6 +10,7 @@ use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\Headline;
+use PHPExif\Common\Data\ValueObject\Jobtitle;
 use PHPExif\Common\Data\ValueObject\Keyword;
 use PHPExif\Common\Data\ValueObject\Title;
 
@@ -261,6 +262,45 @@ class IptcTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $collection,
             $new->getKeywords()
+        );
+    }
+
+    /**
+     * @covers ::withJobtitle
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithJobtitleReturnsNewIptcInstance()
+    {
+        $old = new Iptc();
+        $new = $old->withJobtitle(new Jobtitle('John & Olivia wedding'));
+
+        $this->assertInstanceOf(
+            Iptc::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getJobtitle
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetJobtitleReturnsCorrectData()
+    {
+        $jobtitle = new Jobtitle('Baby shoot North West');
+        $old = new Iptc();
+        $new = $old->withJobtitle($jobtitle);
+
+        $this->assertSame(
+            $jobtitle,
+            $new->getJobtitle()
         );
     }
 }
