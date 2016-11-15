@@ -3,11 +3,14 @@
 namespace Tests\PHPExif\Common\Data;
 
 use Mockery as m;
+use PHPExif\Common\Collection\ArrayCollection;
+use PHPExif\Common\Collection\Collection;
 use PHPExif\Common\Data\Iptc;
 use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\Headline;
+use PHPExif\Common\Data\ValueObject\Keyword;
 use PHPExif\Common\Data\ValueObject\Title;
 
 /**
@@ -212,6 +215,52 @@ class IptcTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $title,
             $new->getTitle()
+        );
+    }
+
+    /**
+     * @covers ::withKeywords
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithKeywordsReturnsNewIptcInstance()
+    {
+        $old = new Iptc();
+        $collection = new ArrayCollection;
+        $collection->add(new Keyword('Foo'));
+        $collection->add(new Keyword('Bar'));
+        $collection->add(new Keyword('Baz'));
+        $new = $old->withKeywords($collection);
+
+        $this->assertInstanceOf(
+            Iptc::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getKeywords
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetKeywordsReturnsCorrectData()
+    {
+        $collection = new ArrayCollection;
+        $collection->add(new Keyword('Foo'));
+        $collection->add(new Keyword('Bar'));
+        $collection->add(new Keyword('Baz'));
+        $old = new Iptc();
+        $new = $old->withKeywords($collection);
+
+        $this->assertSame(
+            $collection,
+            $new->getKeywords()
         );
     }
 }
