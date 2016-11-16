@@ -17,6 +17,7 @@ use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\Headline;
 use PHPExif\Common\Data\ValueObject\Jobtitle;
+use PHPExif\Common\Data\ValueObject\Source;
 use PHPExif\Common\Data\ValueObject\Title;
 
 /**
@@ -55,6 +56,11 @@ class Iptc implements IptcInterface
     protected $jobtitle;
 
     /**
+     * @var Source
+     */
+    protected $source;
+
+    /**
      * @var Title
      */
     protected $title;
@@ -63,16 +69,6 @@ class Iptc implements IptcInterface
      * @var Collection
      */
     protected $keywords;
-
-    /**
-     * Contains the mapping of names to IPTC field numbers
-     *
-     * @var array
-     */
-    public static $iptcMapping = array(
-        'jobtitle'  => '2#085',
-        'source'    => '2#115',
-    );
 
     /**
      * {@inheritDoc}
@@ -203,6 +199,25 @@ class Iptc implements IptcInterface
     {
         $new = clone $this;
         $new->jobtitle = $jobtitle;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withSource(Source $source)
+    {
+        $new = clone $this;
+        $new->source = $source;
 
         return $new;
     }
