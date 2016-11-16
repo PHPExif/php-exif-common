@@ -3,8 +3,8 @@
 namespace Tests\PHPExif\Common\Data;
 
 use Mockery as m;
-use PHPExif\Common\Collection\ArrayCollection;
-use PHPExif\Common\Collection\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use PHPExif\Common\Data\Iptc;
 use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;

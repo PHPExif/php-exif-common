@@ -11,7 +11,7 @@
 
 namespace PHPExif\Common\Data;
 
-use PHPExif\Common\Collection\Collection;
+use Doctrine\Common\Collections\Collection;
 use PHPExif\Common\Data\ValueObject\Caption;
 use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
