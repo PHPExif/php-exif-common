@@ -12,6 +12,7 @@ use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\Headline;
 use PHPExif\Common\Data\ValueObject\Jobtitle;
 use PHPExif\Common\Data\ValueObject\Keyword;
+use PHPExif\Common\Data\ValueObject\Source;
 use PHPExif\Common\Data\ValueObject\Title;
 
 /**
@@ -301,6 +302,45 @@ class IptcTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $jobtitle,
             $new->getJobtitle()
+        );
+    }
+
+    /**
+     * @covers ::withSource
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithSourceReturnsNewIptcInstance()
+    {
+        $old = new Iptc();
+        $new = $old->withSource(new Source('No idea'));
+
+        $this->assertInstanceOf(
+            Iptc::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getSource
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetSourceReturnsCorrectData()
+    {
+        $source = new Source('A small camera');
+        $old = new Iptc();
+        $new = $old->withSource($source);
+
+        $this->assertSame(
+            $source,
+            $new->getSource()
         );
     }
 }

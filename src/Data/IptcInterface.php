@@ -17,6 +17,7 @@ use PHPExif\Common\Data\ValueObject\Copyright;
 use PHPExif\Common\Data\ValueObject\Credit;
 use PHPExif\Common\Data\ValueObject\Headline;
 use PHPExif\Common\Data\ValueObject\Jobtitle;
+use PHPExif\Common\Data\ValueObject\Source;
 use PHPExif\Common\Data\ValueObject\Title;
 
 /**
@@ -140,4 +141,20 @@ interface IptcInterface
      * @return IptcInterface
      */
     public function withJobtitle(Jobtitle $jobtitle);
+
+    /**
+     * Accessor for the source
+     *
+     * @return Source
+     */
+    public function getSource();
+
+    /**
+     * Returns new instance with updated source
+     *
+     * @param Source $source
+     *
+     * @return IptcInterface
+     */
+    public function withSource(Source $source);
 }
