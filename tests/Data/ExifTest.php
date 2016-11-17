@@ -20,6 +20,7 @@ use PHPExif\Common\Data\ValueObject\Model;
 use PHPExif\Common\Data\ValueObject\Software;
 use PHPExif\Common\Data\ValueObject\VerticalResolution;
 use PHPExif\Common\Data\ValueObject\Width;
+use \DateTimeImmutable;
 
 /**
  * Class: ExifTest
@@ -652,6 +653,47 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $isoSpeed,
             $new->getIsoSpeed()
+        );
+    }
+
+    /**
+     * @covers ::withCreationDate
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithCreationDateReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withCreationDate(
+            new DateTimeImmutable('2016-11-17 20:00:00')
+        );
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getCreationDate
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetCreationDateReturnsCorrectData()
+    {
+        $creationDate = new DateTimeImmutable('2016-11-17 20:00:00');
+        $old = new Exif();
+        $new = $old->withCreationDate($creationDate);
+
+        $this->assertSame(
+            $creationDate,
+            $new->getCreationDate()
         );
     }
 }

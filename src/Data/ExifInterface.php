@@ -27,6 +27,7 @@ use PHPExif\Common\Data\ValueObject\Model;
 use PHPExif\Common\Data\ValueObject\Software;
 use PHPExif\Common\Data\ValueObject\VerticalResolution;
 use PHPExif\Common\Data\ValueObject\Width;
+use \DateTimeImmutable;
 
 /**
  * ExifInterface
@@ -39,8 +40,6 @@ use PHPExif\Common\Data\ValueObject\Width;
 interface ExifInterface
 {
     const COLORSPACE            = 'ColorSpace';
-    const CREATION_DATE         = 'creationdate';
-    const KEYWORDS              = 'keywords';
     const ORIENTATION           = 'Orientation';
     const GPS                   = 'gps';
 
@@ -283,4 +282,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withIsoSpeed(IsoSpeed $isoSpeed);
+
+    /**
+     * Accessor for the creation date
+     *
+     * @return DateTimeImmutable
+     */
+    public function getCreationDate();
+
+    /**
+     * Returns new instance with updated creation date
+     *
+     * @param DateTimeImmutable $date
+     *
+     * @return ExifInterface
+     */
+    public function withCreationDate(DateTimeImmutable $date);
 }

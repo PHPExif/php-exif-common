@@ -27,6 +27,7 @@ use PHPExif\Common\Data\ValueObject\Model;
 use PHPExif\Common\Data\ValueObject\Software;
 use PHPExif\Common\Data\ValueObject\VerticalResolution;
 use PHPExif\Common\Data\ValueObject\Width;
+use \DateTimeImmutable;
 
 /**
  * Exif class
@@ -47,6 +48,11 @@ class Exif implements ExifInterface
      * @var Author
      */
     protected $author;
+
+    /**
+     * @var DateTimeImmutable
+     */
+    protected $creationDate;
 
     /**
      * @var ExposureTime
@@ -418,6 +424,25 @@ class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->isoSpeed = $isoSpeed;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withCreationDate(DateTimeImmutable $date)
+    {
+        $new = clone $this;
+        $new->creationDate = $date;
 
         return $new;
     }
