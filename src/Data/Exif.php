@@ -53,6 +53,11 @@ class Exif implements ExifInterface
     protected $creationDate;
 
     /**
+     * @var Dimensions
+     */
+    protected $dimensions;
+
+    /**
      * @var ExposureTime
      */
     protected $exposureTime;
@@ -78,11 +83,6 @@ class Exif implements ExifInterface
     protected $focusDistance;
 
     /**
-     * @var Height
-     */
-    protected $height;
-
-    /**
      * @var IsoSpeed
      */
     protected $isoSpeed;
@@ -106,11 +106,6 @@ class Exif implements ExifInterface
      * @var Software
      */
     protected $software;
-
-    /**
-     * @var Width
-     */
-    protected $width;
 
     /**
      * {@inheritDoc}
