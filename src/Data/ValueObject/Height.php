@@ -12,8 +12,6 @@
 
 namespace PHPExif\Common\Data\ValueObject;
 
-use PHPExif\Common\Data\ValueObject\IntegerObject;
-
 /**
  * Height class
  *
@@ -22,7 +20,7 @@ use PHPExif\Common\Data\ValueObject\IntegerObject;
  * @category    PHPExif
  * @package     Common
  */
-class Height extends IntegerObject
+class Height extends MeasuredObject
 {
     /**
      * Creates a new instance from given Height object
@@ -34,7 +32,24 @@ class Height extends IntegerObject
     public static function fromHeight(Height $height)
     {
         return new self(
-            $height->getValue()
+            $height->getValue(),
+            (clone $height->getUnit())
+        );
+    }
+
+    /**
+     * Creates new instance from given value and
+     * adds a "px" Unit
+     *
+     * @param mixed $value
+     *
+     * @return Height
+     */
+    public static function pixels($value)
+    {
+        return new self(
+            $value,
+            new Unit('px')
         );
     }
 }

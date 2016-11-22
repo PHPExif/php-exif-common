@@ -354,7 +354,7 @@ class ExifTest extends \PHPUnit_Framework_TestCase
     public function testWithWidthReturnsNewExifInstance()
     {
         $old = new Exif();
-        $new = $old->withWidth(new Width(1024));
+        $new = $old->withWidth(Width::pixels(1024));
 
         $this->assertInstanceOf(
             Exif::class,
@@ -373,7 +373,7 @@ class ExifTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetWidthReturnsCorrectData()
     {
-        $width = new Width(2048);
+        $width = Width::pixels(2048);
         $old = new Exif();
         $new = $old->withWidth($width);
 
@@ -393,7 +393,7 @@ class ExifTest extends \PHPUnit_Framework_TestCase
     public function testWithHeightReturnsNewExifInstance()
     {
         $old = new Exif();
-        $new = $old->withHeight(new Height(1024));
+        $new = $old->withHeight(Height::pixels(1024));
 
         $this->assertInstanceOf(
             Exif::class,
@@ -412,7 +412,7 @@ class ExifTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetHeightReturnsCorrectData()
     {
-        $height = new Height(2048);
+        $height = Height::pixels(2048);
         $old = new Exif();
         $new = $old->withHeight($height);
 
