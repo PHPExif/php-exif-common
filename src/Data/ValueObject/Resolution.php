@@ -7,45 +7,132 @@
  * @license     http://github.com/PHPExif/php-exif-common/blob/master/LICENSE MIT License
  * @category    PHPExif
  * @package     Common
+ * @codeCoverageIgnore
  */
 
 namespace PHPExif\Common\Data\ValueObject;
 
-use PHPExif\Common\Data\ValueObject\IntegerObject;
 use \InvalidArgumentException;
+use \JsonSerializable;
 use \RuntimeException;
 
 /**
  * Resolution class
  *
- * A value object to describe the Resolution data
+ * A value object to describe the resolution of an image
  *
  * @category    PHPExif
  * @package     Common
  */
-abstract class Resolution extends IntegerObject
+class Resolution implements JsonSerializable
 {
     /**
-     * @param string $stringData
+     * The horizontal line resolution
      *
-     * @throws InvalidArgumentException If given argument is not a string
+     * @var LineResolution
      */
-    public function __construct($stringData)
+    private $horizontal;
+
+    /**
+     * The vertical line resolution
+     *
+     * @var LineResolution
+     */
+    private $vertical;
+
+    /**
+     * @param LineResolution $horizontal
+     * @param LineResolution $vertical
+     */
+    public function __construct(LineResolution $horizontal, LineResolution $vertical)
     {
-        if (!is_string($stringData)) {
-            throw new InvalidArgumentException('Given data is not a string');
-        }
+        $this->setHorizontal($horizontal);
+        $this->setVertical($vertical);
+    }
 
-        if (!preg_match('#^([0-9]+)/([0-9]+)$#', $stringData, $matches)) {
-            throw new RuntimeException('Given resolution is not in a valid format. Need: "<number>/<number>"');
-        }
+    /**
+     * Sets the horizontal resolution
+     *
+     * @param LineResolution $horizontal
+     *
+     * @return void
+     */
+    private function setHorizontal(LineResolution $horizontal)
+    {
+        $this->horizontal = $horizontal;
+    }
 
-        $numerator = (int) $matches[1];
-        $denominator = (int) $matches[2];
+    /**
+     * Sets the vertical resolution
+     *
+     * @param LineResolution $vertical
+     *
+     * @return void
+     */
+    private function setVertical(LineResolution $vertical)
+    {
+        $this->vertical = $vertical;
+    }
 
-        // normalize:
-        $numerator /= $denominator;
+    /**
+     * Getter for horizontal
+     *
+     * @return LineResolution
+     */
+    public function getHorizontalResolution()
+    {
+        return $this->horizontal;
+    }
 
-        $this->setValue($numerator);
+    /**
+     * Getter for vertical
+     *
+     * @return LineResolution
+     */
+    public function getVerticalResolution()
+    {
+        return $this->vertical;
+    }
+
+    /**
+     * Creates a new instance from given Resolution object
+     *
+     * @param Resolution $resolution
+     *
+     * @return Resolution
+     */
+    public static function fromResolution(Resolution $resolution)
+    {
+        return new self(
+            (clone $resolution->getHorizontalResolution()),
+            (clone $resolution->getVerticalResolution())
+        );
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @return string
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'horizontal' => $this->getHorizontalResolution(),
+            'vertical' => $this->getVerticalResolution(),
+        ];
+    }
+
+    /**
+     * Returns string representation
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf(
+            '%1$s x %2$s',
+            (string) $this->getHorizontalResolution(),
+            (string) $this->getVerticalResolution()
+        );
     }
 }
