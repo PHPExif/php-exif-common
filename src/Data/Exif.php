@@ -13,6 +13,7 @@ namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
+use PHPExif\Common\Data\ValueObject\Coordinates;
 use PHPExif\Common\Data\ValueObject\Dimensions;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
@@ -47,6 +48,11 @@ class Exif implements ExifInterface
      * @var Author
      */
     protected $author;
+
+    /**
+     * @var Coordinates
+     */
+    protected $coordinates;
 
     /**
      * @var DateTimeImmutable
@@ -394,6 +400,25 @@ class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->resolution = $resolution;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCoordinates()
+    {
+        return $this->coordinates;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withCoordinates(Coordinates $coordinates)
+    {
+        $new = clone $this;
+        $new->coordinates = $coordinates;
 
         return $new;
     }

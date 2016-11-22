@@ -6,6 +6,8 @@ use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
+use PHPExif\Common\Data\ValueObject\Coordinates;
+use PHPExif\Common\Data\ValueObject\DigitalDegrees;
 use PHPExif\Common\Data\ValueObject\Dimensions;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
@@ -15,10 +17,10 @@ use PHPExif\Common\Data\ValueObject\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Height;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
 use PHPExif\Common\Data\ValueObject\LineResolution;
-use PHPExif\Common\Data\ValueObject\Resolution;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
+use PHPExif\Common\Data\ValueObject\Resolution;
 use PHPExif\Common\Data\ValueObject\Software;
 use PHPExif\Common\Data\ValueObject\Width;
 use \DateTimeImmutable;
@@ -633,6 +635,53 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $resolution,
             $new->getResolution()
+        );
+    }
+
+    /**
+     * @covers ::withCoordinates
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithCoordinatesReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withCoordinates(
+            new Coordinates(
+                new DigitalDegrees(40.741895),
+                new DigitalDegrees(-73.989308)
+            )
+        );
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getCoordinates
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetCoordinatesReturnsCorrectData()
+    {
+        $coordinates = new Coordinates(
+            new DigitalDegrees(40.741895),
+            new DigitalDegrees(-73.989308)
+        );
+        $old = new Exif();
+        $new = $old->withCoordinates($coordinates);
+
+        $this->assertSame(
+            $coordinates,
+            $new->getCoordinates()
         );
     }
 }

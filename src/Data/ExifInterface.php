@@ -13,6 +13,7 @@ namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
+use PHPExif\Common\Data\ValueObject\Coordinates;
 use PHPExif\Common\Data\ValueObject\Dimensions;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
@@ -265,4 +266,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withResolution(Resolution $resolution);
+
+    /**
+     * Accessor for the coordinates
+     *
+     * @return Coordinates
+     */
+    public function getCoordinates();
+
+    /**
+     * Returns new instance with updated coordinates
+     *
+     * @param Coordinates $coordinates
+     *
+     * @return ExifInterface
+     */
+    public function withCoordinates(Coordinates $coordinates);
 }
