@@ -19,13 +19,12 @@ use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
 use PHPExif\Common\Data\ValueObject\FocusDistance;
-use PHPExif\Common\Data\ValueObject\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
+use PHPExif\Common\Data\ValueObject\LineResolution;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
 use PHPExif\Common\Data\ValueObject\Software;
-use PHPExif\Common\Data\ValueObject\VerticalResolution;
 use \DateTimeImmutable;
 
 /**
@@ -84,11 +83,6 @@ class Exif implements ExifInterface
     protected $height;
 
     /**
-     * @var HorizontalResolution
-     */
-    protected $horizontalResolution;
-
-    /**
      * @var IsoSpeed
      */
     protected $isoSpeed;
@@ -112,11 +106,6 @@ class Exif implements ExifInterface
      * @var Software
      */
     protected $software;
-
-    /**
-     * @var VerticalResolution
-     */
-    protected $verticalResolution;
 
     /**
      * @var Width
@@ -328,44 +317,6 @@ class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->focusDistance = $focusDistance;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getHorizontalResolution()
-    {
-        return $this->horizontalResolution;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withHorizontalResolution(HorizontalResolution $horizontalResolution)
-    {
-        $new = clone $this;
-        $new->horizontalResolution = $horizontalResolution;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getVerticalResolution()
-    {
-        return $this->verticalResolution;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withVerticalResolution(VerticalResolution $verticalResolution)
-    {
-        $new = clone $this;
-        $new->verticalResolution = $verticalResolution;
 
         return $new;
     }

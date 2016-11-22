@@ -19,13 +19,12 @@ use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
 use PHPExif\Common\Data\ValueObject\FocusDistance;
-use PHPExif\Common\Data\ValueObject\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
+use PHPExif\Common\Data\ValueObject\LineResolution;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
 use PHPExif\Common\Data\ValueObject\Software;
-use PHPExif\Common\Data\ValueObject\VerticalResolution;
 use \DateTimeImmutable;
 
 /**
@@ -201,38 +200,6 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withFocusDistance(FocusDistance $focusDistance);
-
-    /**
-     * Accessor for the horizontalResolution
-     *
-     * @return HorizontalResolution
-     */
-    public function getHorizontalResolution();
-
-    /**
-     * Returns new instance with updated horizontalResolution
-     *
-     * @param HorizontalResolution $horizontalResolution
-     *
-     * @return ExifInterface
-     */
-    public function withHorizontalResolution(HorizontalResolution $horizontalResolution);
-
-    /**
-     * Accessor for the verticalResolution
-     *
-     * @return VerticalResolution
-     */
-    public function getVerticalResolution();
-
-    /**
-     * Returns new instance with updated verticalResolution
-     *
-     * @param VerticalResolution $verticalResolution
-     *
-     * @return ExifInterface
-     */
-    public function withVerticalResolution(VerticalResolution $verticalResolution);
 
     /**
      * Accessor for the exposureTime
