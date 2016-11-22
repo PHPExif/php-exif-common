@@ -6,6 +6,7 @@ use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
+use PHPExif\Common\Data\ValueObject\Dimensions;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
@@ -345,16 +346,21 @@ class ExifTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::withWidth
+     * @covers ::withDimensions
      * @group data
      * @group exif
      *
      * @return void
      */
-    public function testWithWidthReturnsNewExifInstance()
+    public function testWithDimensionsReturnsNewExifInstance()
     {
         $old = new Exif();
-        $new = $old->withWidth(Width::pixels(1024));
+        $new = $old->withDimensions(
+            new Dimensions(
+                Width::pixels(1024),
+                Height::pixels(1024)
+            )
+        );
 
         $this->assertInstanceOf(
             Exif::class,
@@ -365,60 +371,24 @@ class ExifTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::getWidth
+     * @covers ::getDimensions
      * @group data
      * @group exif
      *
      * @return void
      */
-    public function testGetWidthReturnsCorrectData()
+    public function testGetDimensionsReturnsCorrectData()
     {
-        $width = Width::pixels(2048);
+        $dimensions = new Dimensions(
+            Width::pixels(1024),
+            Height::pixels(1024)
+        );
         $old = new Exif();
-        $new = $old->withWidth($width);
+        $new = $old->withDimensions($dimensions);
 
         $this->assertSame(
-            $width,
-            $new->getWidth()
-        );
-    }
-
-    /**
-     * @covers ::withHeight
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testWithHeightReturnsNewExifInstance()
-    {
-        $old = new Exif();
-        $new = $old->withHeight(Height::pixels(1024));
-
-        $this->assertInstanceOf(
-            Exif::class,
-            $new
-        );
-
-        $this->assertNotSame($old, $new);
-    }
-
-    /**
-     * @covers ::getHeight
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testGetHeightReturnsCorrectData()
-    {
-        $height = Height::pixels(2048);
-        $old = new Exif();
-        $new = $old->withHeight($height);
-
-        $this->assertSame(
-            $height,
-            $new->getHeight()
+            $dimensions,
+            $new->getDimensions()
         );
     }
 

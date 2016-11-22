@@ -13,12 +13,12 @@ namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
+use PHPExif\Common\Data\ValueObject\Dimensions;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
 use PHPExif\Common\Data\ValueObject\FocusDistance;
-use PHPExif\Common\Data\ValueObject\Height;
 use PHPExif\Common\Data\ValueObject\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
 use PHPExif\Common\Data\ValueObject\Make;
@@ -26,7 +26,6 @@ use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
 use PHPExif\Common\Data\ValueObject\Software;
 use PHPExif\Common\Data\ValueObject\VerticalResolution;
-use PHPExif\Common\Data\ValueObject\Width;
 use \DateTimeImmutable;
 
 /**
@@ -279,37 +278,18 @@ class Exif implements ExifInterface
     /**
      * {@inheritDoc}
      */
-    public function getWidth()
+    public function getDimensions()
     {
-        return $this->width;
+        return $this->dimensions;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withWidth(Width $width)
+    public function withDimensions(Dimensions $dimensions)
     {
         $new = clone $this;
-        $new->width = $width;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getHeight()
-    {
-        return $this->height;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withHeight(Height $height)
-    {
-        $new = clone $this;
-        $new->height = $height;
+        $new->dimensions = $dimensions;
 
         return $new;
     }
