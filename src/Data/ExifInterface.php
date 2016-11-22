@@ -13,20 +13,20 @@ namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
+use PHPExif\Common\Data\ValueObject\Coordinates;
+use PHPExif\Common\Data\ValueObject\Dimensions;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
 use PHPExif\Common\Data\ValueObject\FocusDistance;
-use PHPExif\Common\Data\ValueObject\Height;
-use PHPExif\Common\Data\ValueObject\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
+use PHPExif\Common\Data\ValueObject\LineResolution;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
+use PHPExif\Common\Data\ValueObject\Resolution;
 use PHPExif\Common\Data\ValueObject\Software;
-use PHPExif\Common\Data\ValueObject\VerticalResolution;
-use PHPExif\Common\Data\ValueObject\Width;
 use \DateTimeImmutable;
 
 /**
@@ -156,36 +156,20 @@ interface ExifInterface
     public function withAuthor(Author $author);
 
     /**
-     * Accessor for the width
+     * Accessor for the dimensions
      *
-     * @return Width
+     * @return Dimensions
      */
-    public function getWidth();
+    public function getDimensions();
 
     /**
-     * Returns new instance with updated width
+     * Returns new instance with updated dimensions
      *
-     * @param Width $width
+     * @param Dimensions $dimensions
      *
      * @return ExifInterface
      */
-    public function withWidth(Width $width);
-
-    /**
-     * Accessor for the height
-     *
-     * @return Height
-     */
-    public function getHeight();
-
-    /**
-     * Returns new instance with updated height
-     *
-     * @param Height $height
-     *
-     * @return ExifInterface
-     */
-    public function withHeight(Height $height);
+    public function withDimensions(Dimensions $dimensions);
 
     /**
      * Accessor for the focalLength
@@ -218,38 +202,6 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withFocusDistance(FocusDistance $focusDistance);
-
-    /**
-     * Accessor for the horizontalResolution
-     *
-     * @return HorizontalResolution
-     */
-    public function getHorizontalResolution();
-
-    /**
-     * Returns new instance with updated horizontalResolution
-     *
-     * @param HorizontalResolution $horizontalResolution
-     *
-     * @return ExifInterface
-     */
-    public function withHorizontalResolution(HorizontalResolution $horizontalResolution);
-
-    /**
-     * Accessor for the verticalResolution
-     *
-     * @return VerticalResolution
-     */
-    public function getVerticalResolution();
-
-    /**
-     * Returns new instance with updated verticalResolution
-     *
-     * @param VerticalResolution $verticalResolution
-     *
-     * @return ExifInterface
-     */
-    public function withVerticalResolution(VerticalResolution $verticalResolution);
 
     /**
      * Accessor for the exposureTime
@@ -298,4 +250,36 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withCreationDate(DateTimeImmutable $date);
+
+    /**
+     * Accessor for the resolution
+     *
+     * @return Resolution
+     */
+    public function getResolution();
+
+    /**
+     * Returns new instance with updated resolution
+     *
+     * @param Resolution $resolution
+     *
+     * @return ExifInterface
+     */
+    public function withResolution(Resolution $resolution);
+
+    /**
+     * Accessor for the coordinates
+     *
+     * @return Coordinates
+     */
+    public function getCoordinates();
+
+    /**
+     * Returns new instance with updated coordinates
+     *
+     * @param Coordinates $coordinates
+     *
+     * @return ExifInterface
+     */
+    public function withCoordinates(Coordinates $coordinates);
 }

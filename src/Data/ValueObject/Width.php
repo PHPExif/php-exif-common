@@ -12,8 +12,6 @@
 
 namespace PHPExif\Common\Data\ValueObject;
 
-use PHPExif\Common\Data\ValueObject\IntegerObject;
-
 /**
  * Width class
  *
@@ -22,7 +20,7 @@ use PHPExif\Common\Data\ValueObject\IntegerObject;
  * @category    PHPExif
  * @package     Common
  */
-class Width extends IntegerObject
+class Width extends MeasuredObject
 {
     /**
      * Creates a new instance from given Width object
@@ -34,7 +32,24 @@ class Width extends IntegerObject
     public static function fromWidth(Width $width)
     {
         return new self(
-            $width->getValue()
+            $width->getValue(),
+            (clone $width->getUnit())
+        );
+    }
+
+    /**
+     * Creates new instance from given value and
+     * adds a "px" Unit
+     *
+     * @param mixed $value
+     *
+     * @return Width
+     */
+    public static function pixels($value)
+    {
+        return new self(
+            $value,
+            new Unit('px')
         );
     }
 }

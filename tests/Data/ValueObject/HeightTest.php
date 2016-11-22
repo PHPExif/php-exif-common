@@ -3,8 +3,9 @@
 namespace Tests\PHPExif\Common\Data\ValueObject;
 
 use Mockery as m;
+use PHPExif\Common\Data\ValueObject\Unit;
 use PHPExif\Common\Data\ValueObject\Height;
-use PHPExif\Common\Data\ValueObject\IntegerObject;
+use PHPExif\Common\Data\ValueObject\MeasuredObject;
 
 /**
  * Class: HeightTest
@@ -24,12 +25,54 @@ class HeightTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testHeightIsInstanceOfIntegerObject()
+    public function testHeightIsInstanceOfMeasuredObject()
     {
-        $height = new Height(1024);
+        $height = new Height(1024, new Unit('px'));
         $this->assertInstanceOf(
-            IntegerObject::class,
+            MeasuredObject::class,
             $height
+        );
+    }
+
+    /**
+     * @covers ::pixels
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testPixelsCreatesNewInstance()
+    {
+        $instance = Height::pixels(200);
+        $this->assertInstanceOf(
+            Height::class,
+            $instance
+        );
+    }
+
+    /**
+     * @covers ::pixels
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testPixelsInstanceHasCorrectData()
+    {
+        $instance = Height::pixels(200);
+        $this->assertEquals(
+            200,
+            $instance->getValue()
+        );
+        $this->assertInstanceOf(
+            Unit::class,
+            $instance->getUnit()
+        );
+        $this->assertEquals(
+            'px',
+            $instance->getUnit()
         );
     }
 
@@ -43,7 +86,9 @@ class HeightTest extends \PHPUnit_Framework_TestCase
      */
     public function testFromHeightReturnsNewInstanceWithSameData()
     {
-        $original = new Height(2048);
+        $value = 2048;
+        $unit = new Unit('px');
+        $original = new Height($value, $unit);
         $copy = Height::fromHeight($original);
 
         $this->assertNotSame(
@@ -58,6 +103,15 @@ class HeightTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $original->getValue(),
             $copy->getValue()
+        );
+
+        $this->assertNotSame(
+            $original->getUnit(),
+            $copy->getUnit()
+        );
+        $this->assertEquals(
+            (string) $original->getUnit(),
+            (string) $copy->getUnit()
         );
     }
 }

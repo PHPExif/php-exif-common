@@ -3,8 +3,9 @@
 namespace Tests\PHPExif\Common\Data\ValueObject;
 
 use Mockery as m;
+use PHPExif\Common\Data\ValueObject\Unit;
 use PHPExif\Common\Data\ValueObject\Width;
-use PHPExif\Common\Data\ValueObject\IntegerObject;
+use PHPExif\Common\Data\ValueObject\MeasuredObject;
 
 /**
  * Class: WidthTest
@@ -24,12 +25,54 @@ class WidthTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function testWidthIsInstanceOfIntegerObject()
+    public function testWidthIsInstanceOfMeasuredObject()
     {
-        $width = new Width(1024);
+        $width = new Width(1024, new Unit('px'));
         $this->assertInstanceOf(
-            IntegerObject::class,
+            MeasuredObject::class,
             $width
+        );
+    }
+
+    /**
+     * @covers ::pixels
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testPixelsCreatesNewInstance()
+    {
+        $instance = Width::pixels(200);
+        $this->assertInstanceOf(
+            Width::class,
+            $instance
+        );
+    }
+
+    /**
+     * @covers ::pixels
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testPixelsInstanceHasCorrectData()
+    {
+        $instance = Width::pixels(200);
+        $this->assertEquals(
+            200,
+            $instance->getValue()
+        );
+        $this->assertInstanceOf(
+            Unit::class,
+            $instance->getUnit()
+        );
+        $this->assertEquals(
+            'px',
+            $instance->getUnit()
         );
     }
 
@@ -43,7 +86,9 @@ class WidthTest extends \PHPUnit_Framework_TestCase
      */
     public function testFromWidthReturnsNewInstanceWithSameData()
     {
-        $original = new Width(2048);
+        $value = 2048;
+        $unit = new Unit('px');
+        $original = new Width($value, $unit);
         $copy = Width::fromWidth($original);
 
         $this->assertNotSame(
@@ -58,6 +103,15 @@ class WidthTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $original->getValue(),
             $copy->getValue()
+        );
+
+        $this->assertNotSame(
+            $original->getUnit(),
+            $copy->getUnit()
+        );
+        $this->assertEquals(
+            (string) $original->getUnit(),
+            (string) $copy->getUnit()
         );
     }
 }

@@ -6,19 +6,22 @@ use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
+use PHPExif\Common\Data\ValueObject\Coordinates;
+use PHPExif\Common\Data\ValueObject\DigitalDegrees;
+use PHPExif\Common\Data\ValueObject\Dimensions;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
 use PHPExif\Common\Data\ValueObject\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Height;
-use PHPExif\Common\Data\ValueObject\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
+use PHPExif\Common\Data\ValueObject\LineResolution;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
+use PHPExif\Common\Data\ValueObject\Resolution;
 use PHPExif\Common\Data\ValueObject\Software;
-use PHPExif\Common\Data\ValueObject\VerticalResolution;
 use PHPExif\Common\Data\ValueObject\Width;
 use \DateTimeImmutable;
 
@@ -345,16 +348,21 @@ class ExifTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::withWidth
+     * @covers ::withDimensions
      * @group data
      * @group exif
      *
      * @return void
      */
-    public function testWithWidthReturnsNewExifInstance()
+    public function testWithDimensionsReturnsNewExifInstance()
     {
         $old = new Exif();
-        $new = $old->withWidth(new Width(1024));
+        $new = $old->withDimensions(
+            new Dimensions(
+                Width::pixels(1024),
+                Height::pixels(1024)
+            )
+        );
 
         $this->assertInstanceOf(
             Exif::class,
@@ -365,60 +373,24 @@ class ExifTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::getWidth
+     * @covers ::getDimensions
      * @group data
      * @group exif
      *
      * @return void
      */
-    public function testGetWidthReturnsCorrectData()
+    public function testGetDimensionsReturnsCorrectData()
     {
-        $width = new Width(2048);
+        $dimensions = new Dimensions(
+            Width::pixels(1024),
+            Height::pixels(1024)
+        );
         $old = new Exif();
-        $new = $old->withWidth($width);
+        $new = $old->withDimensions($dimensions);
 
         $this->assertSame(
-            $width,
-            $new->getWidth()
-        );
-    }
-
-    /**
-     * @covers ::withHeight
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testWithHeightReturnsNewExifInstance()
-    {
-        $old = new Exif();
-        $new = $old->withHeight(new Height(1024));
-
-        $this->assertInstanceOf(
-            Exif::class,
-            $new
-        );
-
-        $this->assertNotSame($old, $new);
-    }
-
-    /**
-     * @covers ::getHeight
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testGetHeightReturnsCorrectData()
-    {
-        $height = new Height(2048);
-        $old = new Exif();
-        $new = $old->withHeight($height);
-
-        $this->assertSame(
-            $height,
-            $new->getHeight()
+            $dimensions,
+            $new->getDimensions()
         );
     }
 
@@ -497,84 +469,6 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $focusDistance,
             $new->getFocusDistance()
-        );
-    }
-
-    /**
-     * @covers ::withHorizontalResolution
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testWithHorizontalResolutionReturnsNewExifInstance()
-    {
-        $old = new Exif();
-        $new = $old->withHorizontalResolution(new HorizontalResolution('300/1'));
-
-        $this->assertInstanceOf(
-            Exif::class,
-            $new
-        );
-
-        $this->assertNotSame($old, $new);
-    }
-
-    /**
-     * @covers ::getHorizontalResolution
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testGetHorizontalResolutionReturnsCorrectData()
-    {
-        $horizontalResolution = new HorizontalResolution('300/1');
-        $old = new Exif();
-        $new = $old->withHorizontalResolution($horizontalResolution);
-
-        $this->assertSame(
-            $horizontalResolution,
-            $new->getHorizontalResolution()
-        );
-    }
-
-    /**
-     * @covers ::withVerticalResolution
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testWithVerticalResolutionReturnsNewExifInstance()
-    {
-        $old = new Exif();
-        $new = $old->withVerticalResolution(new VerticalResolution('300/1'));
-
-        $this->assertInstanceOf(
-            Exif::class,
-            $new
-        );
-
-        $this->assertNotSame($old, $new);
-    }
-
-    /**
-     * @covers ::getVerticalResolution
-     * @group data
-     * @group exif
-     *
-     * @return void
-     */
-    public function testGetVerticalResolutionReturnsCorrectData()
-    {
-        $verticalResolution = new VerticalResolution('300/1');
-        $old = new Exif();
-        $new = $old->withVerticalResolution($verticalResolution);
-
-        $this->assertSame(
-            $verticalResolution,
-            $new->getVerticalResolution()
         );
     }
 
@@ -694,6 +588,100 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $creationDate,
             $new->getCreationDate()
+        );
+    }
+
+    /**
+     * @covers ::withResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithResolutionReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withResolution(
+            new Resolution(
+                LineResolution::dpi('300/1'),
+                LineResolution::dpi('300/1')
+            )
+        );
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetResolutionReturnsCorrectData()
+    {
+        $resolution = new Resolution(
+            LineResolution::dpi('300/1'),
+            LineResolution::dpi('300/1')
+        );
+        $old = new Exif();
+        $new = $old->withResolution($resolution);
+
+        $this->assertSame(
+            $resolution,
+            $new->getResolution()
+        );
+    }
+
+    /**
+     * @covers ::withCoordinates
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithCoordinatesReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withCoordinates(
+            new Coordinates(
+                new DigitalDegrees(40.741895),
+                new DigitalDegrees(-73.989308)
+            )
+        );
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getCoordinates
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetCoordinatesReturnsCorrectData()
+    {
+        $coordinates = new Coordinates(
+            new DigitalDegrees(40.741895),
+            new DigitalDegrees(-73.989308)
+        );
+        $old = new Exif();
+        $new = $old->withCoordinates($coordinates);
+
+        $this->assertSame(
+            $coordinates,
+            $new->getCoordinates()
         );
     }
 }

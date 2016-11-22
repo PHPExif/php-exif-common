@@ -13,20 +13,20 @@ namespace PHPExif\Common\Data;
 
 use PHPExif\Common\Data\ValueObject\Aperture;
 use PHPExif\Common\Data\ValueObject\Author;
+use PHPExif\Common\Data\ValueObject\Coordinates;
+use PHPExif\Common\Data\ValueObject\Dimensions;
 use PHPExif\Common\Data\ValueObject\ExposureTime;
 use PHPExif\Common\Data\ValueObject\Filename;
 use PHPExif\Common\Data\ValueObject\Filesize;
 use PHPExif\Common\Data\ValueObject\FocalLength;
 use PHPExif\Common\Data\ValueObject\FocusDistance;
-use PHPExif\Common\Data\ValueObject\Height;
-use PHPExif\Common\Data\ValueObject\HorizontalResolution;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
+use PHPExif\Common\Data\ValueObject\LineResolution;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
+use PHPExif\Common\Data\ValueObject\Resolution;
 use PHPExif\Common\Data\ValueObject\Software;
-use PHPExif\Common\Data\ValueObject\VerticalResolution;
-use PHPExif\Common\Data\ValueObject\Width;
 use \DateTimeImmutable;
 
 /**
@@ -50,9 +50,19 @@ class Exif implements ExifInterface
     protected $author;
 
     /**
+     * @var Coordinates
+     */
+    protected $coordinates;
+
+    /**
      * @var DateTimeImmutable
      */
     protected $creationDate;
+
+    /**
+     * @var Dimensions
+     */
+    protected $dimensions;
 
     /**
      * @var ExposureTime
@@ -80,16 +90,6 @@ class Exif implements ExifInterface
     protected $focusDistance;
 
     /**
-     * @var Height
-     */
-    protected $height;
-
-    /**
-     * @var HorizontalResolution
-     */
-    protected $horizontalResolution;
-
-    /**
      * @var IsoSpeed
      */
     protected $isoSpeed;
@@ -110,19 +110,14 @@ class Exif implements ExifInterface
     protected $mimeType;
 
     /**
+     * @var Resolution
+     */
+    protected $resolution;
+
+    /**
      * @var Software
      */
     protected $software;
-
-    /**
-     * @var VerticalResolution
-     */
-    protected $verticalResolution;
-
-    /**
-     * @var Width
-     */
-    protected $width;
 
     /**
      * {@inheritDoc}
@@ -279,37 +274,18 @@ class Exif implements ExifInterface
     /**
      * {@inheritDoc}
      */
-    public function getWidth()
+    public function getDimensions()
     {
-        return $this->width;
+        return $this->dimensions;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withWidth(Width $width)
+    public function withDimensions(Dimensions $dimensions)
     {
         $new = clone $this;
-        $new->width = $width;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getHeight()
-    {
-        return $this->height;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withHeight(Height $height)
-    {
-        $new = clone $this;
-        $new->height = $height;
+        $new->dimensions = $dimensions;
 
         return $new;
     }
@@ -348,44 +324,6 @@ class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->focusDistance = $focusDistance;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getHorizontalResolution()
-    {
-        return $this->horizontalResolution;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withHorizontalResolution(HorizontalResolution $horizontalResolution)
-    {
-        $new = clone $this;
-        $new->horizontalResolution = $horizontalResolution;
-
-        return $new;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getVerticalResolution()
-    {
-        return $this->verticalResolution;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function withVerticalResolution(VerticalResolution $verticalResolution)
-    {
-        $new = clone $this;
-        $new->verticalResolution = $verticalResolution;
 
         return $new;
     }
@@ -443,6 +381,44 @@ class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->creationDate = $date;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getResolution()
+    {
+        return $this->resolution;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withResolution(Resolution $resolution)
+    {
+        $new = clone $this;
+        $new->resolution = $resolution;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCoordinates()
+    {
+        return $this->coordinates;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withCoordinates(Coordinates $coordinates)
+    {
+        $new = clone $this;
+        $new->coordinates = $coordinates;
 
         return $new;
     }
