@@ -24,6 +24,7 @@ use PHPExif\Common\Data\ValueObject\LineResolution;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
+use PHPExif\Common\Data\ValueObject\Resolution;
 use PHPExif\Common\Data\ValueObject\Software;
 use \DateTimeImmutable;
 
@@ -101,6 +102,11 @@ class Exif implements ExifInterface
      * @var MimeType
      */
     protected $mimeType;
+
+    /**
+     * @var Resolution
+     */
+    protected $resolution;
 
     /**
      * @var Software
@@ -369,6 +375,25 @@ class Exif implements ExifInterface
     {
         $new = clone $this;
         $new->creationDate = $date;
+
+        return $new;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getResolution()
+    {
+        return $this->resolution;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withResolution(Resolution $resolution)
+    {
+        $new = clone $this;
+        $new->resolution = $resolution;
 
         return $new;
     }

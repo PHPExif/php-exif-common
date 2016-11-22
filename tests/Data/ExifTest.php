@@ -15,6 +15,7 @@ use PHPExif\Common\Data\ValueObject\FocusDistance;
 use PHPExif\Common\Data\ValueObject\Height;
 use PHPExif\Common\Data\ValueObject\IsoSpeed;
 use PHPExif\Common\Data\ValueObject\LineResolution;
+use PHPExif\Common\Data\ValueObject\Resolution;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
@@ -585,6 +586,53 @@ class ExifTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $creationDate,
             $new->getCreationDate()
+        );
+    }
+
+    /**
+     * @covers ::withResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testWithResolutionReturnsNewExifInstance()
+    {
+        $old = new Exif();
+        $new = $old->withResolution(
+            new Resolution(
+                LineResolution::dpi('300/1'),
+                LineResolution::dpi('300/1')
+            )
+        );
+
+        $this->assertInstanceOf(
+            Exif::class,
+            $new
+        );
+
+        $this->assertNotSame($old, $new);
+    }
+
+    /**
+     * @covers ::getResolution
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testGetResolutionReturnsCorrectData()
+    {
+        $resolution = new Resolution(
+            LineResolution::dpi('300/1'),
+            LineResolution::dpi('300/1')
+        );
+        $old = new Exif();
+        $new = $old->withResolution($resolution);
+
+        $this->assertSame(
+            $resolution,
+            $new->getResolution()
         );
     }
 }

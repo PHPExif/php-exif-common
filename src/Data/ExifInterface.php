@@ -24,6 +24,7 @@ use PHPExif\Common\Data\ValueObject\LineResolution;
 use PHPExif\Common\Data\ValueObject\Make;
 use PHPExif\Common\Data\ValueObject\MimeType;
 use PHPExif\Common\Data\ValueObject\Model;
+use PHPExif\Common\Data\ValueObject\Resolution;
 use PHPExif\Common\Data\ValueObject\Software;
 use \DateTimeImmutable;
 
@@ -248,4 +249,20 @@ interface ExifInterface
      * @return ExifInterface
      */
     public function withCreationDate(DateTimeImmutable $date);
+
+    /**
+     * Accessor for the resolution
+     *
+     * @return Resolution
+     */
+    public function getResolution();
+
+    /**
+     * Returns new instance with updated resolution
+     *
+     * @param Resolution $resolution
+     *
+     * @return ExifInterface
+     */
+    public function withResolution(Resolution $resolution);
 }
