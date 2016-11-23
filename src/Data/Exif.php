@@ -28,6 +28,9 @@ use PHPExif\Common\Data\ValueObject\Model;
 use PHPExif\Common\Data\ValueObject\Resolution;
 use PHPExif\Common\Data\ValueObject\Software;
 use \DateTimeImmutable;
+use \JsonSerializable;
+use \ReflectionObject;
+use \ReflectionProperty;
 
 /**
  * Exif class
@@ -37,7 +40,7 @@ use \DateTimeImmutable;
  * @category    PHPExif
  * @package     Common
  */
-class Exif implements ExifInterface
+class Exif implements ExifInterface, JsonSerializable
 {
     /**
      * @var Aperture
@@ -421,5 +424,25 @@ class Exif implements ExifInterface
         $new->coordinates = $coordinates;
 
         return $new;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $reflObject = new ReflectionObject($this);
+        $properties = $reflObject->getProperties(ReflectionProperty::IS_PROTECTED);
+
+        $data = [];
+        foreach ($properties as $property) {
+            $propertyName = $property->getName();
+
+            $data[$propertyName] = $this->{$propertyName};
+        }
+
+        return $data;
     }
 }

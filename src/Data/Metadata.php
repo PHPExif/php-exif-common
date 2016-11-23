@@ -11,6 +11,8 @@
 
 namespace PHPExif\Common\Data;
 
+use \JsonSerializable;
+
 /**
  * Metadata class
  *
@@ -19,7 +21,7 @@ namespace PHPExif\Common\Data;
  * @category    PHPExif
  * @package     Common
  */
-class Metadata implements MetadataInterface
+class Metadata implements MetadataInterface, JsonSerializable
 {
     /**
      * @var ExifInterface
@@ -100,5 +102,18 @@ class Metadata implements MetadataInterface
     public function getIptc()
     {
         return $this->iptc;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'exif' => $this->getExif(),
+            'iptc' => $this->getIptc(),
+        ];
     }
 }

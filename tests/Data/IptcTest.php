@@ -343,4 +343,30 @@ class IptcTest extends \PHPUnit_Framework_TestCase
             $new->getSource()
         );
     }
+
+    /**
+     * @covers ::jsonSerialize
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testJsonSerializeReturnsArrayOfData()
+    {
+        $iptc = new Iptc();
+        $data = $iptc->jsonSerialize();
+
+        $this->assertInternalType(
+            'array',
+            $data
+        );
+        $this->assertTrue(
+            count($data) > 0
+        );
+
+        $this->assertEquals(
+            json_encode($data),
+            json_encode($iptc)
+        );
+    }
 }

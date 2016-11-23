@@ -19,6 +19,9 @@ use PHPExif\Common\Data\ValueObject\Headline;
 use PHPExif\Common\Data\ValueObject\Jobtitle;
 use PHPExif\Common\Data\ValueObject\Source;
 use PHPExif\Common\Data\ValueObject\Title;
+use \JsonSerializable;
+use \ReflectionObject;
+use \ReflectionProperty;
 
 /**
  * Iptc class
@@ -28,7 +31,7 @@ use PHPExif\Common\Data\ValueObject\Title;
  * @category    PHPExif
  * @package     Common
  */
-class Iptc implements IptcInterface
+class Iptc implements IptcInterface, JsonSerializable
 {
     /**
      * @var Caption
@@ -220,5 +223,25 @@ class Iptc implements IptcInterface
         $new->source = $source;
 
         return $new;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $reflObject = new ReflectionObject($this);
+        $properties = $reflObject->getProperties(ReflectionProperty::IS_PROTECTED);
+
+        $data = [];
+        foreach ($properties as $property) {
+            $propertyName = $property->getName();
+
+            $data[$propertyName] = $this->{$propertyName};
+        }
+
+        return $data;
     }
 }

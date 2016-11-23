@@ -684,4 +684,30 @@ class ExifTest extends \PHPUnit_Framework_TestCase
             $new->getCoordinates()
         );
     }
+
+    /**
+     * @covers ::jsonSerialize
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testJsonSerializeReturnsArrayOfData()
+    {
+        $exif = new Exif();
+        $data = $exif->jsonSerialize();
+
+        $this->assertInternalType(
+            'array',
+            $data
+        );
+        $this->assertTrue(
+            count($data) > 0
+        );
+
+        $this->assertEquals(
+            json_encode($data),
+            json_encode($exif)
+        );
+    }
 }

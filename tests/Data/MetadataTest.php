@@ -138,4 +138,31 @@ class MetadataTest extends \PHPUnit_Framework_TestCase
             $actual
         );
     }
+
+    /**
+     * @covers ::jsonSerialize
+     * @group data
+     * @group exif
+     *
+     * @return void
+     */
+    public function testJsonSerializeReturnsArrayOfData()
+    {
+        $exif = new Exif;
+        $iptc = new Iptc;
+        $metadata = new Metadata($exif, $iptc);
+        $data = $metadata->jsonSerialize();
+
+        $this->assertInternalType(
+            'array',
+            $data
+        );
+
+        $this->assertCount(2, $data);
+
+        $this->assertEquals(
+            json_encode($data),
+            json_encode($metadata)
+        );
+    }
 }
