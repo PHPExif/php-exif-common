@@ -6,17 +6,17 @@ use Mockery as m;
 use PHPExif\Common\Data\Exif;
 use PHPExif\Common\Data\Iptc;
 use PHPExif\Common\Data\Metadata;
-use PHPExif\Common\Mapper;
+use PHPExif\Common\MetadataMapper;
 use PHPExif\Common\Mapper\FieldMapper;
 
 /**
- * Class: MapperTest
+ * Class: MetadataMapperTest
  *
  * @see \PHPUnit_Framework_TestCase
- * @coversDefaultClass \PHPExif\Common\Mapper
+ * @coversDefaultClass \PHPExif\Common\MetadataMapper
  * @covers ::<!public>
  */
-class MapperTest extends \PHPUnit_Framework_TestCase
+class MetadataMapperTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers ::map
@@ -29,7 +29,7 @@ class MapperTest extends \PHPUnit_Framework_TestCase
         $input = [];
         $output = new Metadata(new Exif, new Iptc);
 
-        $mock = m::mock(Mapper::class . '[mapArray]')->makePartial();
+        $mock = m::mock(MetadataMapper::class . '[mapArray]')->makePartial();
         $mock->shouldReceive('mapArray')
             ->once()
             ->with(
@@ -52,7 +52,7 @@ class MapperTest extends \PHPUnit_Framework_TestCase
         $input = [ 'raw' => 'data' ];
         $output = new Metadata(new Exif, new Iptc);
 
-        $mock = m::mock(Mapper::class . '[mapArray]')->makePartial();
+        $mock = m::mock(MetadataMapper::class . '[mapArray]')->makePartial();
         $mock->shouldReceive('mapArray')
             ->once()
             ->with(
@@ -88,7 +88,7 @@ class MapperTest extends \PHPUnit_Framework_TestCase
             new Iptc
         );
 
-        $mapper = new Mapper;
+        $mapper = new MetadataMapper;
 
         foreach (array(Exif::class, Iptc::class) as $field) {
             $fieldMapper = m::mock(FieldMapper::class . '[getSupportedFields,mapField]');

@@ -17,7 +17,7 @@ use PHPExif\Common\Mapper\ArrayMapper;
 use PHPExif\Common\Mapper\FieldMapperTrait;
 
 /**
- * Mapper
+ * MetadataMapper
  *
  * Maps the array of exif & iptc data onto the
  * correct fields of given MetadataInterface object
@@ -25,7 +25,7 @@ use PHPExif\Common\Mapper\FieldMapperTrait;
  * @category    PHPExif
  * @package     Common
  */
-class Mapper implements MapperInterface, ArrayMapper
+class MetadataMapper implements MapperInterface, ArrayMapper
 {
     use FieldMapperTrait;
 
