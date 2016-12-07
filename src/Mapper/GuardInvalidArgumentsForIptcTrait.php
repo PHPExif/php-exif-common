@@ -27,6 +27,8 @@ trait GuardInvalidArgumentsForIptcTrait
     /**
      * Guard function for invalid arguments
      *
+     * @codeCoverageIgnore
+     *
      * @param string $field
      * @param array $input
      * @param object $output
