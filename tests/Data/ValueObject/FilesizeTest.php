@@ -432,4 +432,209 @@ class FilesizeTest extends \PHPUnit_Framework_TestCase
             $instance
         );
     }
+
+    /**
+     * @covers ::fromKiloBytesString
+     * @dataProvider fromKBSWrongArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromKiloBytesStringFailsWhenNotStringArgument($arg)
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $instance = Filesize::fromKiloBytesString($arg);
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromKBSWrongArgs()
+    {
+        return [
+            [1],
+            [5.6],
+            [false],
+            [true],
+            [null],
+            [[]],
+            [(new \stdClass)],
+            [function () {}],
+        ];
+    }
+
+    /**
+     * @covers ::fromKiloBytesString
+     * @dataProvider fromKBSWrongStringArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromKiloBytesStringFailsWhenNotStringHasWrongFormat($arg)
+    {
+        $this->expectException(\RuntimeException::class);
+        $instance = Filesize::fromKiloBytesString($arg);
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromKBSWrongStringArgs()
+    {
+        return [
+            ['5.4 kb'],
+            ['5.4 Kb'],
+            ['foobar'],
+            ['5,4 KB'],
+        ];
+    }
+
+    /**
+     * @covers ::fromKiloBytesString
+     * @dataProvider fromKiloBytesStringCorrectArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromKiloBytesStringDoesntFailsWhenStringHasCorrectFormat($arg)
+    {
+        try {
+            $instance = Filesize::fromKiloBytesString($arg);
+        } catch (\Exception $e) {
+            $this->fail(
+                sprintf(
+                    'Expected format "%1$s" to succeed',
+                    $arg
+                )
+            );
+        }
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromKiloBytesStringCorrectArgs()
+    {
+        return [
+            ['5KB'],
+            ['5 KB'],
+            ['5.4KB'],
+            ['5.4 KB'],
+        ];
+    }
+
+    /**
+     * @covers ::fromKiloBytesString
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromKiloBytesStringReturnsInstance()
+    {
+        $instance = Filesize::fromKiloBytesString('5.4 KB');
+        $this->assertInstanceOf(
+            Filesize::class,
+            $instance
+        );
+    }
+
+    /**
+     * @covers ::fromKiloBytes
+     * @dataProvider fromKBWrongArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromKiloBytesFailsWhenNotStringArgument($arg)
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $instance = Filesize::fromKiloBytes($arg);
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromKBWrongArgs()
+    {
+        return [
+            ['foo'],
+            [false],
+            [true],
+            [null],
+            [[]],
+            [(new \stdClass)],
+            [function () {}],
+        ];
+    }
+
+    /**
+     * @covers ::fromKiloBytes
+     * @dataProvider fromKiloBytesCorrectArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromKiloBytesDoesntFailsWhenStringHasCorrectFormat($arg)
+    {
+        try {
+            $instance = Filesize::fromKiloBytes($arg);
+        } catch (\Exception $e) {
+            $this->fail(
+                sprintf(
+                    'Expected format "%1$s" to succeed',
+                    $arg
+                )
+            );
+        }
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromKiloBytesCorrectArgs()
+    {
+        return [
+            [5],
+            [5.4],
+        ];
+    }
+
+    /**
+     * @covers ::fromKiloBytes
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromKiloBytesReturnsInstance()
+    {
+        $instance = Filesize::fromKiloBytes(5.4);
+        $this->assertInstanceOf(
+            Filesize::class,
+            $instance
+        );
+    }
 }
