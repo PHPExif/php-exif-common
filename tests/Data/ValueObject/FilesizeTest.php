@@ -227,4 +227,209 @@ class FilesizeTest extends \PHPUnit_Framework_TestCase
             ],
         ];
     }
+
+    /**
+     * @covers ::fromMegaBytesString
+     * @dataProvider fromMBSWrongArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromMegaBytesStringFailsWhenNotStringArgument($arg)
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $instance = Filesize::fromMegaBytesString($arg);
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromMBSWrongArgs()
+    {
+        return [
+            [1],
+            [5.6],
+            [false],
+            [true],
+            [null],
+            [[]],
+            [(new \stdClass)],
+            [function () {}],
+        ];
+    }
+
+    /**
+     * @covers ::fromMegaBytesString
+     * @dataProvider fromMBSWrongStringArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromMegaBytesStringFailsWhenNotStringHasWrongFormat($arg)
+    {
+        $this->expectException(\RuntimeException::class);
+        $instance = Filesize::fromMegaBytesString($arg);
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromMBSWrongStringArgs()
+    {
+        return [
+            ['5.4 mb'],
+            ['5.4 Mb'],
+            ['foobar'],
+            ['5,4 MB'],
+        ];
+    }
+
+    /**
+     * @covers ::fromMegaBytesString
+     * @dataProvider fromMegaBytesStringCorrectArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromMegaBytesStringDoesntFailsWhenStringHasCorrectFormat($arg)
+    {
+        try {
+            $instance = Filesize::fromMegaBytesString($arg);
+        } catch (\Exception $e) {
+            $this->fail(
+                sprintf(
+                    'Expected format "%1$s" to succeed',
+                    $arg
+                )
+            );
+        }
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromMegaBytesStringCorrectArgs()
+    {
+        return [
+            ['5MB'],
+            ['5 MB'],
+            ['5.4MB'],
+            ['5.4 MB'],
+        ];
+    }
+
+    /**
+     * @covers ::fromMegaBytesString
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromMegaBytesStringReturnsInstance()
+    {
+        $instance = Filesize::fromMegaBytesString('5.4 MB');
+        $this->assertInstanceOf(
+            Filesize::class,
+            $instance
+        );
+    }
+
+    /**
+     * @covers ::fromMegaBytes
+     * @dataProvider fromMBWrongArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromMegaBytesFailsWhenNotStringArgument($arg)
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $instance = Filesize::fromMegaBytes($arg);
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromMBWrongArgs()
+    {
+        return [
+            ['foo'],
+            [false],
+            [true],
+            [null],
+            [[]],
+            [(new \stdClass)],
+            [function () {}],
+        ];
+    }
+
+    /**
+     * @covers ::fromMegaBytes
+     * @dataProvider fromMegaBytesCorrectArgs
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromMegaBytesDoesntFailsWhenStringHasCorrectFormat($arg)
+    {
+        try {
+            $instance = Filesize::fromMegaBytes($arg);
+        } catch (\Exception $e) {
+            $this->fail(
+                sprintf(
+                    'Expected format "%1$s" to succeed',
+                    $arg
+                )
+            );
+        }
+    }
+
+    /**
+     * Data Provider
+     *
+     * @return array
+     */
+    public function fromMegaBytesCorrectArgs()
+    {
+        return [
+            [5],
+            [5.4],
+        ];
+    }
+
+    /**
+     * @covers ::fromMegaBytes
+     * @group data
+     * @group valueobject
+     * @group exif
+     *
+     * @return void
+     */
+    public function testFromMegaBytesReturnsInstance()
+    {
+        $instance = Filesize::fromMegaBytes(5.4);
+        $this->assertInstanceOf(
+            Filesize::class,
+            $instance
+        );
+    }
 }
